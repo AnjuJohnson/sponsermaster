@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/container"
+    android:layout_height="match_parent"
+    android:layout_width="match_parent"
+    android:layout_marginTop="?attr/actionBarSize">
+
+    <include layout="@layout/view_progress" />
+
+    <include layout="@layout/view_error" />
+
+    <include layout="@layout/view_empty" />
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/mrecyclerview"
+        android:layout_height="match_parent"
+        android:layout_width="match_parent"
+        android:layout_marginTop="5dp"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"/>
+    <com.cutesys.sponsermasterlibrary.Button.FloatingActionButton
+        android:id="@+id/mAdd"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/fab_add"
+        android:layout_gravity="right|bottom"
+        android:padding="10dp"
+        style="@style/MenuButtonsStyleadd" />
+</FrameLayout>

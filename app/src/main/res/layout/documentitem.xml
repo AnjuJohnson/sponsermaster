@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_height="wrap_content"
+    android:paddingLeft="10dp"
+    android:paddingRight="10dp">
+
+    <LinearLayout
+        style="@style/list_CardView">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:id="@+id/item_card"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <FrameLayout
+                    android:id="@+id/circle"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginLeft="5dp"
+                    android:layout_gravity="top"
+                    android:gravity="center">
+                    <com.cutesys.sponsermasterlibrary.Button.FloatingActionButton
+                        android:id="@+id/img"
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
+                        android:layout_gravity="center"
+                        app:fab_showShadow="false"/>
+                    <com.cutesys.sponsermasterlibrary.CircularImageView
+                        android:id="@+id/circularprofile"
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
+                        android:layout_gravity="center"
+                        android:gravity="center"
+                        android:src="@drawable/profile"
+                        app:civ_border_color="@color/semiTransparentWhite"
+                        app:civ_border_width="1dp"/>
+                </FrameLayout>
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:orientation="vertical"
+                    android:layout_marginLeft="8dp">
+
+                    <TextView
+                        android:id="@+id/name"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="@dimen/listname"
+                        android:singleLine="true"
+                        android:ellipsize="end"
+                        android:textColor="#aa2b00"/>
+                </LinearLayout>
+
+                <com.cutesys.sponsermasterlibrary.Button.FloatingActionButton
+                    android:id="@+id/mDownload"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@mipmap/ic_action_download"
+                    android:layout_gravity="right|center"
+                    android:padding="10dp"
+                    style="@style/MenuButtonsStyledownload"/>
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginLeft="68dp"
+                android:background="#CBCDCF"/>
+        </LinearLayout>
+    </LinearLayout>
+</FrameLayout>

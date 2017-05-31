@@ -1,0 +1,28 @@
+<resources>
+
+    <dimen name="rmlayout">60dp</dimen>
+    <dimen name="remember">18dp</dimen>
+    <dimen name="loginb">300dp</dimen>
+    <dimen name="visible">36dp</dimen>
+    <dimen name="emptytext">40dp</dimen>
+    <dimen name="btnheight">60dp</dimen>
+
+    <dimen name="expand_logo_width">100dp</dimen>
+    <dimen name="expand_logo_height">90dp</dimen>
+
+    <dimen name="expandcard_lr">30dp</dimen>
+    <dimen name="expandcard_top">1dp</dimen>
+    <dimen name="expandcard_btm">8dp</dimen>
+
+    <dimen name="expand_sublayout">60dp</dimen>
+    <dimen name="expnadablemaintext">20sp</dimen>
+    <dimen name="expnadablesubtext">18sp</dimen>
+
+    <dimen name="homemargin">20sp</dimen>
+
+    <dimen name="listname">18dp</dimen>
+    <dimen name="listcontent">17dp</dimen>
+
+    <dimen name="toolbartitle">19sp</dimen>
+    <dimen name="menupading">15dp</dimen>
+</resources>

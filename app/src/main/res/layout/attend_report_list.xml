@@ -1,0 +1,379 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@drawable/toolbar"
+        android:orientation="horizontal">
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:padding="@dimen/menupading"
+            android:src="@mipmap/ic_action_menu"/>
+        <TextView
+            android:id="@+id/mTitle"
+            android:layout_width="wrap_content"
+            android:layout_weight="1"
+            android:layout_height="match_parent"
+            android:layout_marginTop="3dp"
+            android:layout_marginBottom="4dp"
+            android:gravity="center|left"
+            android:textColor="@android:color/white"
+            android:textSize="@dimen/toolbartitle"
+            />
+    </LinearLayout>
+
+    <include layout="@layout/view_progress"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="?attr/actionBarSize"/>
+
+    <include layout="@layout/view_error"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="?attr/actionBarSize"/>
+
+    <include layout="@layout/view_empty"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="?attr/actionBarSize"/>
+    <android.support.v7.widget.CardView
+        android:layout_marginTop="?attr/actionBarSize"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardCornerRadius="3dp"
+        app:cardElevation="4dp"
+        android:layout_marginLeft="2dp"
+        android:layout_marginRight="2dp"
+        android:layout_marginBottom="1dp"
+        app:cardBackgroundColor="#ffffff"
+        app:cardUseCompatPadding="true"
+        app:cardPreventCornerOverlap="false"
+        app:contentPadding="0dp">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:background="#2f8f74">
+
+                <TextView
+                    android:id="@+id/emp_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:textSize="17dp"
+                    android:textColor="#FFFFFF"
+                    android:padding="7dp"
+                    android:gravity="center"
+                    android:layout_gravity="center"
+
+                    android:text="johns"
+                    android:textStyle="bold"/>
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:orientation="horizontal">
+                <ImageView
+
+                    android:layout_weight="1"
+
+                    android:id="@+id/img_home"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="left|center"
+                    android:src="@mipmap/ic_registration_date"
+                    android:tint="@color/iconcolors"/>
+                <TextView
+                    android:textSize="17sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/iconcolors"
+                    android:id="@+id/selected_date"
+                    android:text="ggfdgfdf"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:layout_weight="1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_marginTop="20dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="30dp"
+                    android:layout_weight="1"
+                    android:orientation="horizontal">
+                    <TextView
+                        android:gravity="center|left"
+                        android:paddingLeft="10dp"
+                        android:textColor="@color/app_black"
+
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:text="Punch in Time"/>
+                </LinearLayout>
+                <LinearLayout
+
+                    android:layout_width="1dp"
+                    android:layout_height="match_parent"
+                    android:background="@color/iconcolors">
+
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1">
+                    <TextView
+                        android:id="@+id/punch_in"
+                        android:layout_gravity="center"
+                        android:gravity="center"
+                        android:paddingLeft="10dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:text="Punch in Time"/>
+                </LinearLayout>
+
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_marginTop="20dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="30dp"
+                    android:layout_weight="1"
+                    android:orientation="horizontal">
+                    <TextView
+                        android:gravity="center|left"
+                        android:paddingLeft="10dp"
+                        android:textColor="@color/app_black"
+
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:text="Punch in Location"/>
+
+
+
+                </LinearLayout>
+                <LinearLayout
+
+                    android:layout_width="1dp"
+                    android:layout_height="match_parent"
+                    android:background="@color/iconcolors">
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1">
+                    <TextView
+                        android:id="@+id/punch_in_loc"
+                        android:layout_gravity="center"
+                        android:gravity="center"
+                        android:paddingLeft="10dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:text="Punch in Time"/>
+                </LinearLayout>
+
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_marginTop="20dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="30dp"
+                    android:layout_weight="1"
+                    android:orientation="horizontal">
+                    <TextView
+                        android:gravity="center|left"
+                        android:paddingLeft="10dp"
+                        android:textColor="@color/app_black"
+
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:text="Punch in IP"/>
+
+
+
+                </LinearLayout>
+                <LinearLayout
+
+                    android:layout_width="1dp"
+                    android:layout_height="match_parent"
+                    android:background="@color/iconcolors">
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1">
+                    <TextView
+                        android:id="@+id/punch_in_ip"
+                        android:layout_gravity="center"
+                        android:gravity="center"
+                        android:paddingLeft="10dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:text="Punch in Time"/>
+                </LinearLayout>
+
+
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_marginTop="20dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="30dp"
+                    android:layout_weight="1"
+                    android:orientation="horizontal">
+                    <TextView
+                        android:gravity="center|left"
+                        android:paddingLeft="10dp"
+                        android:textColor="@color/app_black"
+
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:text="Punch out Time"/>
+
+
+
+                </LinearLayout>
+                <LinearLayout
+
+                    android:layout_width="1dp"
+                    android:layout_height="match_parent"
+                    android:background="@color/iconcolors">
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1">
+                    <TextView
+                        android:id="@+id/punch_out"
+                        android:layout_gravity="center"
+                        android:gravity="center"
+                        android:paddingLeft="10dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:text="Punch in Time"/>
+                </LinearLayout>
+
+
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_marginTop="20dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="30dp"
+                    android:layout_weight="1"
+                    android:orientation="horizontal">
+                    <TextView
+                        android:gravity="center|left"
+                        android:paddingLeft="10dp"
+                        android:textColor="@color/app_black"
+
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:text="Punch out Location"/>
+                </LinearLayout>
+                <LinearLayout
+
+                    android:layout_width="1dp"
+                    android:layout_height="match_parent"
+                    android:background="@color/iconcolors">
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1">
+                    <TextView
+                        android:id="@+id/punch_out_loc"
+                        android:layout_gravity="center"
+                        android:gravity="center"
+                        android:paddingLeft="10dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:text="Punch in Time"/>
+                </LinearLayout>
+
+
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_marginTop="20dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="30dp"
+                    android:layout_weight="1"
+                    android:orientation="horizontal">
+                    <TextView
+                        android:gravity="center|left"
+                        android:paddingLeft="10dp"
+                        android:textColor="@color/app_black"
+
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:text="Punch out IP"/>
+
+
+
+                </LinearLayout>
+                <LinearLayout
+
+                    android:layout_width="1dp"
+                    android:layout_height="match_parent"
+                    android:background="@color/iconcolors">
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1">
+                    <TextView
+                        android:id="@+id/punch_out_ip"
+                        android:layout_gravity="center"
+                        android:gravity="center"
+                        android:paddingLeft="10dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:text="Punch in Time"/>
+                </LinearLayout>
+
+
+
+            </LinearLayout>
+
+
+
+        </LinearLayout>
+    </android.support.v7.widget.CardView>
+
+
+
+</FrameLayout>

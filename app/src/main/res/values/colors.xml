@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="secondary_text">#727272</color>
+    <color name="trans_black_25">#40000000</color>
+    <color name="chrome_grey">#F2F2F2</color>
+    <color name="primary_text">#212121</color>
+    <color name="colorPrimary">#5a0c56</color>
+    <color name="colorPrimarysecond">#600c56</color>
+    <color name="colorPrimaryDark">#3d0951</color>
+    <color name="colorAccent">#F06292</color>
+    <color name="colorAccentsecond">#009688</color>
+    <color name="semiTransparentWhite">#40FFFFFF</color>
+    <color name="Vehicle_background">#00BFA5</color>
+    <color name="loginbase">#eaaee2</color>
+    <color name="loginhighlightbase">#e89bc9</color>
+    <color name="checkbox">#febf9c</color>
+    <color name="loginbutton">#e52f2f</color>
+    <color name="iconcolors">#F06292</color>
+
+    <color name="rose">#EDE7F6</color>
+    <color name="home_blue">#64abc4</color>
+    <color name="company_card">#308f77</color>
+
+    <color name="icmenu">#b284b2</color>
+    <color name="flipbg">#e3e3e3</color>
+    <color name="expandvalue">#476543</color>
+    <color name="tablayoutbg">#350b39</color>
+    <color name="greenimage">#10be93</color>
+    <color name="blueimage">#106ebe</color>
+
+    <color name="alertyellow">#f9b049</color>
+    <color name="empred">#e7384c</color>
+    <color name="visablue">#64abc4</color>
+    <color name="cpygreen">#559f4a</color>
+
+    <color name="swipe">#f3f3f3</color>
+    <color name="white">#ffffff</color>
+    <color name="sponsorcard">#ebcc64</color>
+    <color name="clientcard">#3498DB</color>
+
+    <color name="text_lgray">#808080</color>
+    <color name="text_gray">#323232</color>
+</resources>

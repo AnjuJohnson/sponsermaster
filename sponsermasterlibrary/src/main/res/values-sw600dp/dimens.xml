@@ -1,0 +1,5 @@
+<resources>
+
+    <dimen name="listpadding">5dp</dimen>
+    <dimen name="listpaddingbottom">3dp</dimen>
+</resources>

@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:id="@+id/container"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <include layout="@layout/view_error" />
+
+    <include layout="@layout/view_empty" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@drawable/toolbar"
+        android:orientation="horizontal">
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:padding="@dimen/menupading"
+            android:src="@mipmap/ic_action_menu"/>
+        <TextView
+            android:id="@+id/mTitle"
+            android:layout_width="wrap_content"
+            android:layout_weight="1"
+            android:layout_height="match_parent"
+            android:layout_marginTop="3dp"
+            android:layout_marginBottom="4dp"
+            android:gravity="center|left"
+            android:textColor="@android:color/white"
+            android:textSize="@dimen/toolbartitle"/>
+        <Button
+            android:visibility="gone"
+            android:layout_margin="10dp"
+            android:id="@+id/changetype"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:padding="@dimen/menupading"
+            android:text="BACK"
+            android:textColor="@color/white"
+            android:background="@color/colorPrimary"
+            />
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:id="@+id/visible_layout"
+        android:layout_marginTop="?attr/actionBarSize"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        <TextView
+            android:layout_marginLeft="30dp"
+            android:layout_marginTop="30dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Choose Date"
+            android:textColor="@color/colorPrimary"
+            android:textStyle="bold"/>
+        <CalendarView
+            android:id="@+id/calendar"
+            android:layout_marginTop="30dp"
+            android:layout_width="match_parent"
+            android:theme="@style/AppThemeCalender"
+            android:layout_height="wrap_content">
+
+        </CalendarView>
+
+        <Button
+            android:id="@+id/submit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Submit"
+            android:layout_gravity="center"
+            android:background="@drawable/toolbar"
+            android:textColor="@color/white"/>
+
+    </LinearLayout>
+
+    <android.support.v7.widget.RecyclerView
+        android:layout_marginTop="?attr/actionBarSize"
+        android:visibility="gone"
+        android:id="@+id/loan_recycler"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="top"
+        android:divider="@null"
+        android:scrollbars="vertical"
+        />
+
+</FrameLayout>

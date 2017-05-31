@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="MenuButtonsStyledownload">
+        <item name="fab_size">mini</item>
+
+        <item name="fab_shadowColor">#FFFBFB</item>
+        <item name="fab_colorNormal">#389c7b</item>
+        <item name="fab_colorPressed">#1c1b81</item>
+        <item name="fab_colorRipple">#29547f</item>
+    </style>
+
+
+    <style name="MSV_ImageButton">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:background">?android:attr/selectableItemBackground</item>
+        <item name="android:paddingLeft">@dimen/search_icon_padding</item>
+        <item name="android:paddingRight">@dimen/search_icon_padding</item>
+    </style>
+
+    <style name="snackbarbutton">
+        <item name="android:typeface">serif</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textSize">@dimen/snack_text</item>
+        <item name="android:text">@string/snack_button</item>
+        <item name="android:paddingLeft">@dimen/floating_label_text_size</item>
+        <item name="android:paddingRight">@dimen/floating_label_text_size</item>
+        <item name="android:layout_marginLeft">@dimen/snack_margin</item>
+        <item name="android:textColor">@color/colorPrimary</item>
+    </style>
+
+    <style name="snacktext">
+        <item name="android:gravity">center|left</item>
+        <item name="android:paddingLeft">@dimen/floating_label_text_size</item>
+        <item name="android:paddingRight">@dimen/floating_label_text_size</item>
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:textSize">@dimen/spacing_normal</item>
+    </style>
+
+    <style name="snacklayout">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_gravity">center</item>
+        <item name="android:layout_margin">@dimen/spacing_normal</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:background">@color/profilebg</item>
+        <item name="android:gravity">center</item>
+        <item name="android:orientation">horizontal</item>
+        <item name="android:padding">@dimen/spacing_normal</item>
+    </style>
+
+    <style name="search_edit">
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:background">@null</item>
+        <item name="android:hint">@string/search_hint</item>
+        <item name="android:imeOptions">actionSearch</item>
+        <item name="android:inputType">textNoSuggestions</item>
+        <item name="android:paddingLeft">@dimen/search_view_text_padding</item>
+        <item name="android:paddingRight">@dimen/search_view_text_padding</item>
+        <item name="android:singleLine">true</item>
+        <item name="android:textColor">@color/searchtext</item>
+        <item name="android:textColorHint">@color/searchhint</item>
+        <item name="android:textSize">@dimen/spacing_normal</item>
+    </style>
+
+
+
+    <style name="wraplayout">
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_width">wrap_content</item>
+    </style>
+
+    <style name="matchlayout">
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_width">match_parent</item>
+    </style>
+
+    <style name="matchwraplayout">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+
+    <style name="fillmatchlayout">
+        <item name="android:layout_width">fill_parent</item>
+        <item name="android:layout_height">match_parent</item>
+    </style>
+
+    <style name="matchtoolarlayout">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">?attr/actionBarSize</item>
+    </style>
+</resources>

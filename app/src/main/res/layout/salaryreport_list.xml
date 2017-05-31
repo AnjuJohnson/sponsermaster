@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/container"
+    android:layout_height="match_parent"
+    android:layout_width="match_parent">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@drawable/toolbar"
+        android:orientation="horizontal">
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:padding="@dimen/menupading"
+            android:src="@mipmap/ic_action_menu"/>
+        <TextView
+            android:id="@+id/mTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="3dp"
+            android:layout_marginBottom="4dp"
+            android:layout_gravity="center"
+            android:textColor="@android:color/white"
+            android:textSize="@dimen/toolbartitle"/>
+    </LinearLayout>
+    <include layout="@layout/view_progress" />
+
+    <include layout="@layout/view_error" />
+
+    <include layout="@layout/view_empty" />
+
+    <HorizontalScrollView
+        android:id="@+id/ScrollView"
+        android:layout_width="fill_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="?attr/actionBarSize"
+        android:scrollbarThumbHorizontal="@drawable/scrollbar"
+        android:scrollbarSize="50dp"
+
+        android:fadeScrollbars="false"
+        android:fillViewport="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:orientation="horizontal"
+                android:background="@color/tablayoutbg">
+
+                <TextView
+                    android:id="@+id/title1"
+                    android:layout_width="80dp"
+                    android:layout_height="match_parent"
+                    android:textColor="@color/white"
+                    android:singleLine="true"
+                    android:ellipsize="end"
+                    android:text="ID"
+                    android:gravity="center"
+                    android:textSize="16sp"/>
+                <TextView
+                    android:id="@+id/title2"
+                    android:layout_width="150dp"
+                    android:layout_height="match_parent"
+                    android:textColor="@color/white"
+                    android:singleLine="true"
+                    android:ellipsize="end"
+                    android:text="Name"
+                    android:gravity="center|left"
+                    android:textSize="16sp"/>
+                <TextView
+                    android:id="@+id/title3"
+                    android:layout_width="150dp"
+                    android:layout_height="match_parent"
+                    android:textColor="@color/white"
+                    android:singleLine="true"
+                    android:ellipsize="end"
+                    android:text="Designation"
+                    android:gravity="center|left"
+                    android:textSize="16sp"/>
+                <TextView
+                    android:id="@+id/title4"
+                    android:layout_width="150dp"
+                    android:layout_height="match_parent"
+                    android:textColor="@color/white"
+                    android:singleLine="true"
+                    android:ellipsize="end"
+                    android:text="Salary"
+                    android:gravity="center|left"
+                    android:textSize="16sp"/>
+                <TextView
+                    android:id="@+id/title5"
+                    android:layout_width="150dp"
+                    android:layout_height="match_parent"
+                    android:textColor="@color/white"
+                    android:singleLine="true"
+                    android:ellipsize="end"
+                    android:text="Company"
+                    android:gravity="center|left"
+                    android:textSize="16sp"/>
+
+
+            </LinearLayout>
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/cmpy_recycler7"
+                android:layout_height="match_parent"
+                android:layout_width="match_parent"
+                android:layout_marginTop="5dp"
+                app:layout_behavior="@string/appbar_scrolling_view_behavior"/>
+
+        </LinearLayout>
+    </HorizontalScrollView>
+</FrameLayout>
+

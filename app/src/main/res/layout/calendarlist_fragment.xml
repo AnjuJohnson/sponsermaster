@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/container"
+    android:layout_height="match_parent"
+    android:layout_width="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@null"
+        android:layout_gravity="right"
+        android:gravity="center|right"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/yeartext"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:textColor="@color/white"
+            android:gravity="center"/>
+        <ImageView
+            android:id="@+id/seldate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/ic_date"
+            android:layout_marginRight="40dp"
+            android:padding="@dimen/menupading"/>
+    </LinearLayout>
+
+    <include layout="@layout/view_progress" />
+
+    <include layout="@layout/view_error" />
+
+    <include layout="@layout/view_empty" />
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/mrecyclerview"
+        android:layout_height="match_parent"
+        android:layout_width="match_parent"
+        android:layout_marginTop="?attr/actionBarSize"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"/>
+
+    <LinearLayout
+        android:id="@+id/popuplayout"
+        android:layout_width="match_parent"
+        android:layout_height="230dp"
+        android:layout_gravity="bottom"
+        android:background="@color/white">
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                android:orientation="horizontal">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:layout_marginTop="3dp"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginBottom="4dp"
+                    android:text="\tSelect Year"
+                    android:gravity="center|left"
+                    android:textColor="@android:color/black"
+                    android:textSize="@dimen/toolbartitle"/>
+                <Button
+                    android:id="@+id/done"
+                    android:layout_width="105dp"
+                    android:layout_height="35dp"
+                    android:text="Apply"
+                    android:layout_marginRight="10dp"
+                    android:textColor="@color/white"
+                    android:layout_gravity="center|right"
+                    android:background="#F67D24"/>
+                <ImageView
+                    android:id="@+id/closepopup"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:padding="@dimen/menupading"
+                    android:src="@mipmap/ic_close"/>
+            </LinearLayout>
+            <View
+                android:layout_width="match_parent"
+                android:layout_marginTop="?attr/actionBarSize"
+                android:layout_height="5dp"
+                android:background="@drawable/top_shadow"/>
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="?attr/actionBarSize">
+
+                <com.cutesys.sponsermasterlibrary.NumberPicker
+                    android:id="@+id/selectyear"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    app:np_width="190dp"
+                    app:np_height="70dp"
+                    app:np_dividerThickness="1dp"
+                    android:layout_gravity="center"
+                    app:np_dividerColor="#673AB7"
+                    app:np_orientation="horizontal"
+                    app:np_textColor="#673AB7"
+                    app:np_textSize="18dp"/>
+            </FrameLayout>
+        </FrameLayout>
+    </LinearLayout>
+</FrameLayout>

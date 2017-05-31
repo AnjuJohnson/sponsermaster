@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/container"
+    android:layout_height="match_parent"
+    android:layout_width="match_parent">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@drawable/toolbar"
+        android:orientation="horizontal">
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:padding="@dimen/menupading"
+            android:src="@mipmap/ic_action_menu"/>
+        <TextView
+            android:id="@+id/mTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="3dp"
+            android:layout_marginBottom="4dp"
+            android:layout_gravity="center"
+            android:textColor="@android:color/white"
+            android:textSize="@dimen/toolbartitle"/>
+    </LinearLayout>
+    <include layout="@layout/view_progress" />
+
+    <include layout="@layout/view_error" />
+
+    <include layout="@layout/view_empty" />
+
+    <HorizontalScrollView
+        android:id="@+id/ScrollView"
+        android:layout_width="fill_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="?attr/actionBarSize"
+        android:scrollbarThumbHorizontal="@drawable/scrollbar"
+        android:fadeScrollbars="false"
+        android:fillViewport="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:orientation="horizontal"
+                android:background="@color/tablayoutbg">
+
+                <TextView
+                    android:id="@+id/slno"
+                    android:layout_width="80dp"
+                    android:layout_height="match_parent"
+                    android:textColor="@color/white"
+                    android:singleLine="true"
+                    android:ellipsize="end"
+                    android:text="Sl.No"
+                    android:gravity="center"
+                    android:textSize="16sp"/>
+
+                <TextView
+                    android:id="@+id/title1"
+                    android:layout_width="@dimen/title1"
+                    style="@style/reporthead"
+                    android:text="\tName"/>
+                <TextView
+                    style="@style/div"/>
+                <TextView
+                    android:id="@+id/title2"
+                    android:layout_width="@dimen/title1"
+                    style="@style/reporthead"
+                    android:text="Client Name"/>
+                <TextView
+                    style="@style/div"/>
+                <TextView
+                    android:id="@+id/title3"
+                    android:layout_width="@dimen/title2"
+                    style="@style/reporthead"
+                    android:text="Ref No"/>
+                <TextView
+                    style="@style/div"/>
+                <TextView
+                    android:id="@+id/title4"
+                    android:layout_width="@dimen/title2"
+                    style="@style/reporthead"
+                    android:text="Sponsor"/>
+                <TextView
+                    style="@style/div"/>
+                <TextView
+                    android:id="@+id/title5"
+                    android:layout_width="@dimen/title2"
+                    style="@style/reporthead"
+                    android:text="Visa Type"/>
+                <TextView
+                    style="@style/div"/>
+                <TextView
+                    android:id="@+id/title6"
+                    android:layout_width="@dimen/title2"
+                    style="@style/reporthead"
+                    android:text="Category"/>
+
+                <TextView
+                    style="@style/div"/>
+                <TextView
+                    android:layout_width="@dimen/title2"
+                    style="@style/reporthead"
+                    android:text="Entry"/>
+                <TextView
+                    style="@style/div"/>
+                <TextView
+                    android:layout_width="@dimen/title2"
+                    style="@style/reporthead"
+                    android:text="Expiry"/>
+                <TextView
+                    style="@style/div"/>
+                <TextView
+                    android:id="@+id/title9"
+                    android:layout_width="@dimen/title2"
+                    style="@style/reporthead"
+                    android:text="Status"/>
+
+            </LinearLayout>
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/mrecyclerview"
+                android:layout_height="match_parent"
+                android:layout_width="match_parent"
+                app:layout_behavior="@string/appbar_scrolling_view_behavior"/>
+
+        </LinearLayout>
+    </HorizontalScrollView>
+</FrameLayout>
+

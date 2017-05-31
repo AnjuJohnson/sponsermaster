@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginTop="?attr/actionBarSize">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:background="#f1a7ea"
+        android:orientation="horizontal">
+        <ImageView
+            android:id="@+id/ic_previous"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:src="@mipmap/ic_action_back"
+            android:padding="@dimen/menupading"/>
+        <TextView
+            android:id="@+id/mTitle"
+            android:layout_width="wrap_content"
+            android:layout_weight="1"
+            android:layout_height="match_parent"
+            android:layout_marginTop="3dp"
+            android:layout_marginBottom="4dp"
+            android:gravity="center"
+            android:textColor="#000000"
+            android:textSize="@dimen/toolbartitle"/>
+        <ImageView
+            android:id="@+id/ic_next"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:src="@mipmap/ic_action_next"
+            android:padding="@dimen/menupading"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:layout_marginTop="?attr/actionBarSize">
+        <com.cutesys.sponsermasterlibrary.Calendar.CompactCalendarView
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/calendarview"
+            android:layout_width="fill_parent"
+            android:layout_height="300dp"
+            app:compactCalendarTargetHeight="300dp"
+            app:compactCalendarTextSize="12sp"
+            app:compactCalendarBackgroundColor="@android:color/transparent"
+            app:compactCalendarTextColor="@android:color/black"
+            app:compactCalendarCurrentSelectedDayBackgroundColor="#8b0d55"
+            app:compactCalendarCurrentDayBackgroundColor="#ec8ce3"
+            app:compactCalendarCurrentDayIndicatorStyle="fill_large_indicator"
+            app:compactCalendarEventIndicatorStyle="small_indicator"
+            app:compactCalendarOtherMonthDaysTextColor="@android:color/black"
+            app:compactCalendarShouldSelectFirstDayOfMonthOnScroll="true" />
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <com.cutesys.sponsermasterlibrary.Progress.AVLoadingIndicatorView
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:id="@+id/indicator"
+                app:indicator="BallGridPulse"
+                android:layout_gravity="center"
+                app:indicator_color="@color/colorAccentsecond"/>
+            <ListView
+                android:id="@+id/event_listview"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+            </ListView>
+        </FrameLayout>
+    </LinearLayout>
+</FrameLayout>

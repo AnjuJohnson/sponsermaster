@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="greenimage">#10be93</color>
+    <color name="level_0">#1abc9c</color>
+    <color name="level_1">#3498db</color>
+    <color name="level_2">#e67e22</color>
+    <color name="level_3">#8e44ad</color>
+    <color name="level_4">#f1c40f</color>
+    <color name="level_5">#2ecc71</color>
+    <color name="level_default">#000000</color>
+    <color name="grey">#ffdedede</color>
+    <color name="green">#f25a59</color>
+    <color name="white">@android:color/white</color>
+
+
+    <color name="colorPrimary">#2196F3</color>
+    <color name="red">#f25a59</color>
+    <color name="shadow">#66000000</color>
+
+    <color name="blue">#f25a59</color>
+    <color name="yellow">#face4b</color>
+    <color name="search_layover_bg">#50000000</color>
+    <color name="profilebg">#212942</color>
+    <color name="bgtint">#10000000</color>
+    <color name="searchtext">#212121</color>
+    <color name="searchhint">#727272</color>
+    <color name="lgt_red">#df5a55</color>
+    <color name="lgt_blue">#76afcf</color>
+    <color name="lgt_yellow">#f9bb72</color>
+    <color name="lgt_pink">#dd6495</color>
+    <color name="lgt_green">#72d3b4</color>
+    <color name="red_10">#ff670729</color>
+    <color name="red_20">#ff7a0c2d</color>
+    <color name="red_30">#ff96092d</color>
+    <color name="red_40">#ffa10a37</color>
+    <color name="red_50">#ffbf013b</color>
+    <color name="default_color">#ffac23</color>
+    <color name="default_color_border">#111e44</color>
+
+    <color name="cpb_grey">#F44336</color>
+    <color name="cpb_blue">#F44336</color>
+    <color name="cpb_white">#ffffff</color>
+
+
+    <color name="calendar_selected_date_blue">#266CD2</color>
+    <color name="calendar_selected_date_green">#4CAF50</color>
+    <color name="app_black">#000000</color>
+    <color name="month_orange">#C85300</color>
+    <color name="app_light_blue">#c3d0f6</color>
+    <color name="app_arrow_grey">#8B8B8B</color>
+    <color name="app_week_title_grey">#626262</color>
+    <color name="app_light_grey">#64000000</color>
+
+    <color name="default_back_color">@android:color/transparent</color>
+    <color name="default_back_stroke_color">#f0f0f0</color>
+    <color name="default_chart_value_color">#ff3d00</color>
+
+    <color name="text_color">#804a4a4a</color>
+    <color name="hint_color">#804a4a4a</color>
+    <color name="input_text_color">#282828</color>
+    <color name="negative_button_color">#80000000</color>
+    <color name="positive_button_color">#009688</color>
+    <color name="divider_color">#33000000</color>
+    <color name="title_color">#ffffff</color>
+    <color name="disabled_color">#44000000</color>
+    <color name="error_color">#E7492E</color>
+    <color name="spinner">#00b9f5</color>
+</resources>

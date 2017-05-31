@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.cutesys.sponsormasterfullversionnew">
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
+    <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.CALL_PHONE" />
+    <uses-permission android:name="android.permission.SEND_SMS" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <activity android:name=".LoginActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <activity android:name=".DashboardActivity"
+            android:label="@string/openDrawer"></activity>
+        <activity android:name=".Subclasses.FlipChildActivity"></activity>
+        <activity android:name=".UserManagement.add_login"></activity>
+        <activity android:name=".ADDModule.AddBank"
+            android:theme="@style/AppThemenew"
+            android:label="@string/openDrawer"></activity>
+        <activity android:name=".ADDModule.AddCountry"
+            android:theme="@style/AppThemenew"
+            android:label="@string/openDrawer"></activity>
+        <activity android:name=".ADDModule.AddStateActivity"
+            android:theme="@style/AppThemenew"
+            android:label="@string/openDrawer"></activity>
+        <activity android:name=".ADDModule.AddQualification"
+            android:theme="@style/AppThemenew"
+            android:label="@string/openDrawer"></activity>
+        <activity android:name=".ADDModule.AddJob"
+            android:theme="@style/AppThemenew"
+            android:label="@string/openDrawer"></activity>
+        <activity android:name=".ADDModule.AddCategoryActivity"
+            android:theme="@style/AppThemenew"
+            android:label="@string/openDrawer"></activity>
+        <activity android:name=".ADDModule.AddSkillActivity"
+            android:theme="@style/AppThemenew"
+            android:label="@string/openDrawer"></activity>
+        <activity android:name=".ADDModule.AddHoliday"
+            android:theme="@style/AppThemeCalender"></activity>
+        <activity android:name=".Recruitment.AddTravelDetailsFragment"></activity>
+        <activity android:name=".AddWithOneSpinnerActivity"></activity>
+        <activity android:name=".OtherProfileActivity"
+            android:theme="@style/AppThemedashoard"
+            android:label="@string/openDrawer"/>
+        <activity android:name=".ADDModule.AddDesignationActivity"
+            android:theme="@style/AppThemenew"
+            android:label="@string/openDrawer"/>
+        <activity android:name=".Payroll.adddeductioncategory"
+            android:theme="@style/AppThemenew"
+            android:label="@string/openDrawer"></activity>
+
+        <activity android:name=".ADDModule.AddVisaTypeActivity"
+            android:theme="@style/AppThemenew"
+            android:label="@string/openDrawer"/>
+
+        <activity android:name=".ADDModule.AddVisaSponsorActivity"
+            android:theme="@style/AppThemenew"
+            android:label="@string/openDrawer"/>
+
+        <activity android:name=".ADDModule.AddVisaClientActivity"
+            android:theme="@style/AppThemenew"
+            android:label="@string/openDrawer"/>
+
+        <activity android:name=".ADDModule.AddVisaCategoryActivity"
+            android:theme="@style/AppThemenew"
+            android:label="@string/openDrawer"/>
+
+        <activity android:name=".ADDModule.AddManufacturerActivity"
+            android:theme="@style/AppThemenew"
+            android:label="@string/openDrawer"/>
+
+        <activity android:name=".ADDModule.AddModelActivity"
+            android:theme="@style/AppThemenew"
+            android:label="@string/openDrawer"/>
+
+        <activity android:name=".ADDModule.AddInsuranceCompanyActivity"
+            android:theme="@style/AppThemenew"
+            android:label="@string/openDrawer"/>
+
+        <activity android:name=".ADDModule.AddInsuranceTypeActivity"
+            android:theme="@style/AppThemedashoard"
+            android:label="@string/openDrawer"/>
+        <activity android:name=".ADDModule.AddExpensesTypeActivity"
+            android:theme="@style/AppThemedashoard"
+            android:label="@string/openDrawer"/>
+        <activity android:name=".ADDModule.AddAllowanceActivity"
+            android:theme="@style/AppThemedashoard"
+            android:label="@string/openDrawer"/>
+        <activity android:name=".ADDModule.add_camp"
+            android:theme="@style/AppThemenew"
+            android:label="@string/openDrawer"></activity>
+        <activity android:name=".ADDModule.add_camproom"
+            android:theme="@style/AppThemenew"
+            android:label="@string/openDrawer"></activity>
+        <activity android:name=".NotificationView"/>
+        <activity android:name=".AgentProfileActivity"/>
+        <activity android:name=".UserManagement.Attendance_Report_Page_item_Activity"/>
+    </application>
+</manifest>

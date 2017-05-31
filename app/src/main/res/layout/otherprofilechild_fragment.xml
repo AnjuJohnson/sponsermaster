@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v4.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/profile_recycler"
+    android:layout_height="match_parent"
+    android:layout_width="match_parent"
+    android:layout_marginTop="10dp" >
+
+    <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/container"
+        android:paddingTop="20dp"
+        android:paddingBottom="20dp"
+        android:layout_height="match_parent"
+        android:layout_width="match_parent">
+
+        <include layout="@layout/view_progress"
+            style="@style/viewlayout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+
+        <include layout="@layout/view_error"
+            style="@style/viewlayout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+
+        <include layout="@layout/view_empty"
+            style="@style/viewlayout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/mrecyclerview"
+            android:layout_height="match_parent"
+            android:layout_width="match_parent"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior"/>
+    </FrameLayout>
+</android.support.v4.widget.NestedScrollView>
