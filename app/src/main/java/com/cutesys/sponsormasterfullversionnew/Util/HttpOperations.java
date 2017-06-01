@@ -231,7 +231,8 @@ public class HttpOperations {
         API_EMPLOYEE_REASON("employeeApi/leavereasonlist","POST"),
         API_ADD_REASON("employeeApi/addleavereason","POST"),
         API_AGENT_PROFILE("RecruitmentApi/agentprofile","POST"),
-        API_CANDIDATE_DETAILS("RecruitmentApi/candidatedetails","POST");
+        API_CANDIDATE_DETAILS("RecruitmentApi/candidatedetails","POST"),
+        API_ATTENDANCEREPORT_ORIGINAL("UserApi/reportattendancelist","POST");
 
 
 
@@ -780,6 +781,7 @@ public class HttpOperations {
         return sendRequest(params, APIS.API_ATTENDANCE_LIST, "?admin_id="+id+"&Authorization="+
                 authorization+"&start="+start+"&limit=50"+"&today="+date);
     }
+    ////attendance report
     public StringBuilder doAttendanceReport(final String id, final String authorization,
                                           final String start,final String designation,
                                           final String employee_id,final String year,final String month,final String day) {
@@ -794,6 +796,23 @@ public class HttpOperations {
         return sendRequest(params, APIS.API_ATTENDANCEREPORT, "?admin_id="+id+"&Authorization="+
                 authorization+"&start="+start+"&limit=50"+"&designation="+designation+"&employee_id="+employee_id+"&year="+year+"&month="+month+"&day="+day);
     }
+    ////attendance report ORIGINAL
+    public StringBuilder doAttendanceReportoriginal(final String id, final String authorization,
+                                           final String designation,
+                                            final String employee_id,final String year,final String month,final String day,final String start) {
+        HashMap<String, String> params = new HashMap<String, String>();
+        params.put("admin_id", id);
+        params.put("Authorization", authorization);
+        params.put("designation",designation);
+        params.put("employee_id",employee_id);
+        params.put("year",year);
+        params.put("month",month);
+        params.put("day",day);
+        return sendRequest(params, APIS.API_ATTENDANCEREPORT_ORIGINAL, "?admin_id="+id+"&Authorization="+
+                authorization+"&designation="+designation+"&employee_id="+employee_id+"&year="+year+"&month="+month+"&day="+day+"&start="+start+"&limit=50");
+    }
+
+
 
     //company archive
     public StringBuilder docompanyarchive(final String id, final String authorization, final String start

@@ -233,24 +233,24 @@ public class AdvancePendingListFragment  extends Fragment implements View.OnClic
                                     item.setemployee_salary(StringUtils.capitalize(feedObj.getString("employee_salary")
                                             .toLowerCase().trim()));
                                 }
-                                if (feedObj.getString("approved_loan_amount").trim().equals("")) {
+                                if (feedObj.getString("requested_amount").trim().equals("")) {
                                     item.setapproved_loan_amount("None");
                                 } else {
-                                    item.setapproved_loan_amount(StringUtils.capitalize(feedObj.getString("approved_loan_amount")
+                                    item.setapproved_loan_amount(StringUtils.capitalize(feedObj.getString("requested_amount")
                                             .toLowerCase().trim()));
                                 }
-                                if (feedObj.getString("repay_status").trim().equals("")) {
+                                if (feedObj.getString("status").trim().equals("")) {
                                     item.setrepay_status("None");
                                 } else {
-                                    item.setrepay_status(StringUtils.capitalize(feedObj.getString("repay_status")
+                                    item.setrepay_status(StringUtils.capitalize(feedObj.getString("status")
                                             .toLowerCase().trim()));
                                 }
-                                if (feedObj.getString("type").trim().equals("")) {
+                               /* if (feedObj.getString("type").trim().equals("")) {
                                     item.settype("None");
                                 } else {
                                     item.settype(StringUtils.capitalize(feedObj.getString("type")
                                             .toLowerCase().trim()));
-                                }
+                                }*/
 
 
                                 dataItem.add(item);

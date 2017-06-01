@@ -61,7 +61,7 @@ public String YEAR,MONTH,DAY;
     ArrayList<AllListItem> dataIt;
 
     AVLoadingIndicatorView progress,progress_2;
-    LeaveListAdapter2 mLeaveListAdapter;
+
     int start = 0;
     String status;
     TextView txt,mEmp_id;

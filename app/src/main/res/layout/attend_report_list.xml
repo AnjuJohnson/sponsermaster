@@ -9,13 +9,10 @@
         android:layout_height="?attr/actionBarSize"
         android:background="@drawable/toolbar"
         android:orientation="horizontal">
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:padding="@dimen/menupading"
-            android:src="@mipmap/ic_action_menu"/>
+
         <TextView
+
+            android:paddingLeft="20dp"
             android:id="@+id/mTitle"
             android:layout_width="wrap_content"
             android:layout_weight="1"
@@ -43,6 +40,8 @@
         android:layout_height="match_parent"
         android:layout_marginTop="?attr/actionBarSize"/>
     <android.support.v7.widget.CardView
+
+        android:id="@+id/card"
         android:layout_marginTop="?attr/actionBarSize"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
