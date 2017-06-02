@@ -61,6 +61,7 @@
                                 android:textSize="17dp"/>
                         </LinearLayout>
                         <LinearLayout
+                            android:paddingLeft="5dp"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:orientation="horizontal"
@@ -68,15 +69,46 @@
                             <ImageView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
+                                android:src="@mipmap/f_emp"/>
+                            <TextView
+android:paddingLeft="5dp"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Emp ID"
+                                android:textColor="#000000"
+                                android:textSize="15dp"
+                               />
+                            <TextView
+                                android:layout_weight="1"
+                                android:id="@+id/emp_id"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="10dp"
+                                android:textColor="@color/secondary_text"
+                                android:textSize="15dp"
+                                />
+                        </LinearLayout>
+                        <LinearLayout
+                            android:paddingLeft="5dp"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:layout_marginTop="5dp">
+                            <ImageView
+
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
                                 android:src="@drawable/banknotes"/>
                             <TextView
+                                android:paddingLeft="9dp"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="Salary"
                                 android:textColor="#000000"
                                 android:textSize="15dp"
-                                android:layout_marginLeft="10dp"/>
+                              />
                             <TextView
+
                                 android:id="@+id/salary2"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
@@ -88,6 +120,7 @@
 
 
                         <LinearLayout
+                            android:paddingLeft="5dp"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:orientation="horizontal"
@@ -97,13 +130,15 @@
                                 android:layout_height="wrap_content"
                                 android:src="@drawable/banknotes"/>
                             <TextView
+                                android:paddingLeft="9dp"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="Amount"
                                 android:textColor="#000000"
                                 android:textSize="15dp"
-                                android:layout_marginLeft="10dp"/>
+                              />
                             <TextView
+                                android:layout_weight="1"
                                 android:id="@+id/advance_amount1"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
@@ -111,12 +146,36 @@
                                 android:textColor="@color/secondary_text"
                                 android:textSize="15dp"/>
                         </LinearLayout>
-
                         <LinearLayout
+                            android:paddingLeft="5dp"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:orientation="horizontal"
-                            android:layout_marginTop="5dp">
+                            android:layout_marginTop="10dp">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Requested Date"
+                                android:textColor="#000000"
+                                android:textSize="15dp"
+                                android:layout_marginLeft="5dp"/>
+                            <TextView
+                                android:layout_weight="1"
+                                android:id="@+id/req_date"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="10dp"
+                                android:textColor="@color/secondary_text"
+                                android:textSize="15dp"
+                                />
+                        </LinearLayout>
+                        <LinearLayout
+                            android:paddingLeft="5dp"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:layout_marginTop="10dp">
 
                             <TextView
                                 android:layout_width="wrap_content"
@@ -126,6 +185,7 @@
                                 android:textSize="15dp"
                                 android:layout_marginLeft="5dp"/>
                             <TextView
+                                android:layout_weight="1"
                                 android:id="@+id/advance_status1"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"

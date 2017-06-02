@@ -106,9 +106,10 @@
                         android:layout_marginBottom="4dp">
                         <ImageView
                             android:id="@+id/img2"
-                            android:src="@mipmap/f_cpy"
+                            android:src="@drawable/networkip"
                             android:layout_width="wrap_content"
-                            android:layout_height="match_parent"/>
+                            android:layout_height="match_parent"
+                            android:tint="@color/iconcolors"/>
                         <TextView
                             android:id="@+id/camplocation"
                             android:layout_width="wrap_content"

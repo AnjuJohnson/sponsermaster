@@ -1,0 +1,235 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="5dp">
+    <android.support.v7.widget.CardView
+        style="@style/status_CardView"
+        android:id="@+id/documentstatuscard"
+        android:layout_margin="3dp">
+
+        <com.cutesys.sponsermasterlibrary.Expandablelayout.ExpandableLayout
+            android:id="@+id/expandable_company"
+            app:expWithParentScroll="true"
+            android:layout_gravity="center"
+            style="@style/layoutmatchwrap">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:paddingLeft="10dp"
+                    android:paddingTop="10dp"
+                    android:paddingBottom="10dp"
+                    android:paddingRight="3dp"
+                    android:textStyle="bold"
+                    android:background="#008960">
+                    <TextView
+                        android:id="@+id/agentname"
+                        android:layout_width="wrap_content"
+                        android:layout_weight="1"
+                        android:layout_height="match_parent"
+                        android:textSize="17sp"
+                        android:singleLine="true"
+                        android:ellipsize="end"
+                        android:textStyle="bold"
+                        android:textColor="@android:color/white"/>
+                    <TextView
+                        android:id="@+id/agentid"
+                        android:layout_width="wrap_content"
+                        android:layout_weight="1"
+                        android:layout_height="match_parent"
+                        android:textSize="15dp"
+                        android:singleLine="true"
+                        android:ellipsize="end"
+                        android:textStyle="bold"
+                        android:gravity="center|right"
+                        android:layout_gravity="center|right"
+                        android:layout_marginRight="5dp"
+                        android:textColor="@android:color/white"/>
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="right"
+                        android:src="@mipmap/ic_plus"/>
+                </LinearLayout>
+
+                <LinearLayout
+
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:orientation="horizontal">
+                    <ImageView
+                        android:id="@+id/placeimg"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@mipmap/f_address"/>
+                    <TextView
+                        android:id="@+id/agentplace"
+                        android:layout_width="wrap_content"
+                        android:layout_weight="1"
+                        android:layout_height="wrap_content"
+                        android:textSize="16dp"
+                        android:layout_marginLeft="50dp"
+                        android:textColor="@android:color/black"
+                        android:padding="5dp"/>
+
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="8dp"
+                    android:layout_weight="2">
+                    <ImageView
+                        android:id="@+id/countryimg"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+
+
+                        android:src="@mipmap/f_nation"/>
+
+                    <TextView
+                        android:id="@+id/agentcountry"
+                        android:layout_width="wrap_content"
+                        android:layout_weight="1"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="50dp"
+                        android:textSize="16dp"
+                        android:textColor="@android:color/black"
+                        />
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/agentstatetextview"
+                        android:layout_width="wrap_content"
+
+                        android:layout_height="wrap_content"
+                        android:padding="5dp"
+                        android:text="State:"
+                        android:textColor="@android:color/black"
+                        android:textSize="16dp" />
+
+                    <TextView
+                        android:id="@+id/agentstate"
+                        android:layout_width="wrap_content"
+
+                        android:layout_height="wrap_content"
+                        android:textSize="16dp"
+                        android:layout_marginLeft="10dp"
+                        android:textColor="@android:color/black"
+                        android:padding="5dp"/>
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:orientation="horizontal">
+                    <ImageView
+                        android:id="@+id/building"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@mipmap/f_cpy"/>
+                    <TextView
+                        android:id="@+id/buildno"
+                        android:layout_width="wrap_content"
+                        android:layout_weight="1"
+                        android:layout_marginLeft="55dp"
+                        android:layout_height="wrap_content"
+                        android:textSize="16dp"
+                        android:textColor="@android:color/black"
+                        />
+
+                </LinearLayout>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:orientation="horizontal">
+                    <ImageView
+                        android:id="@+id/agentphoneimg"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@mipmap/f_call"/>
+                    <TextView
+                        android:id="@+id/agentphone"
+                        android:layout_width="wrap_content"
+                        android:layout_weight="1"
+                        android:layout_marginLeft="50dp"
+                        android:layout_height="wrap_content"
+                        android:textSize="16dp"
+                        android:textColor="@android:color/black"
+                        />
+
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:orientation="horizontal">
+                    <ImageView
+                        android:id="@+id/agentmailimg"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@mipmap/f_mail"/>
+                    <TextView
+                        android:id="@+id/agentmail"
+                        android:layout_width="wrap_content"
+                        android:layout_weight="1"
+                        android:layout_marginLeft="50dp"
+                        android:layout_height="wrap_content"
+                        android:textSize="16dp"
+                        android:textColor="@android:color/black"
+                        />
+
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/agentzipcode"
+                        android:layout_width="wrap_content"
+
+                        android:text="Zipcode:"
+                        android:layout_height="wrap_content"
+                        android:textSize="16dp"
+                        android:textColor="@android:color/black"
+                        android:padding="5dp"/>
+                    <TextView
+                        android:id="@+id/agentzipcodetext"
+                        android:layout_width="wrap_content"
+
+                        android:layout_height="wrap_content"
+                        android:textSize="16dp"
+                        android:textColor="@android:color/black"
+                        />
+                </LinearLayout>
+
+            </LinearLayout>
+        </com.cutesys.sponsermasterlibrary.Expandablelayout.ExpandableLayout>
+    </android.support.v7.widget.CardView>
+</FrameLayout>

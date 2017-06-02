@@ -220,7 +220,7 @@ public class CustomDataProvider {
         groupItem1.setLevel(groupItem1.getLevel() + 1);
 
         list.add(new Item("Basic Salary",R.mipmap.ic_empty, 36));
-       // list.add(new Item("Salary Update",R.mipmap.ic_empty, 37));
+        list.add(new Item("Advance Salary",R.mipmap.ic_empty, 37));
         list.add(groupItem);
         list.add(groupItem1);
         return list;

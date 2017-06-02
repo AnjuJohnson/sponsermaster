@@ -27,9 +27,16 @@
     </LinearLayout>
     <include layout="@layout/view_progress" />
 
-    <include layout="@layout/view_error" />
+    <include layout="@layout/view_error"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="?attr/actionBarSize"/>
 
-    <include layout="@layout/view_empty" />
+    <include layout="@layout/view_empty"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="?attr/actionBarSize"/>
+
 
     <com.cutesys.sponsermasterlibrary.ScrollSwipe.FastScrollRecyclerView
         android:id="@+id/mrecyclerview"

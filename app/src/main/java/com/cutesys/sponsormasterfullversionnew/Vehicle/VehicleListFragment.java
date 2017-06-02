@@ -14,8 +14,10 @@ import android.widget.TextView;
 import com.cutesys.sponsermasterlibrary.Badge;
 import com.cutesys.sponsermasterlibrary.ScrollSwipe.FastScrollRecyclerView;
 import com.cutesys.sponsermasterlibrary.Switcher.Switcher;
+import com.cutesys.sponsormasterfullversionnew.Adapterclasses.VehicleAdapterNew;
 import com.cutesys.sponsormasterfullversionnew.Adapterclasses.VehicleListAdapter;
 import com.cutesys.sponsormasterfullversionnew.Helperclasses.ListItem;
+import com.cutesys.sponsormasterfullversionnew.Helperclasses.Listener;
 import com.cutesys.sponsormasterfullversionnew.Helperclasses.SqliteHelper;
 import com.cutesys.sponsormasterfullversionnew.R;
 import com.cutesys.sponsormasterfullversionnew.Util.Config;
@@ -44,12 +46,12 @@ public class VehicleListFragment extends Fragment implements View.OnClickListene
     private FastScrollRecyclerView mrecyclerview;
     private TextView error_label_retry, empty_label_retry, mTitle;
 
-    private VehicleListAdapter mVehicleListAdapter;
+    private VehicleAdapterNew mVehicleListAdapter;
 
     List<HashMap<String, String>> Data_Item ;
     ArrayList<ListItem> dataItem;
     int start = 0;
-
+Listener mListener;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -62,11 +64,16 @@ public class VehicleListFragment extends Fragment implements View.OnClickListene
     }
 
     private void InitIdView(View rootView){
-
+mListener=(Listener)getActivity();
         Data_Item = helper.gethomedetails();
         mBadge = (Badge)rootView.findViewById(R.id.badge);
         mBadge.setText(Data_Item.get(0).get("home_vehicle_notification"));
-
+        mBadge.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mListener.LoadItem(54);
+            }
+        });
         switcher = new Switcher.Builder(getActivity())
                 .addContentView(rootView.findViewById(R.id.mrecyclerview))
                 .addErrorView(rootView.findViewById(R.id.error_view))
@@ -187,6 +194,11 @@ public class VehicleListFragment extends Fragment implements View.OnClickListene
                                     item.set_address(address.toString());
                                 }
 
+                                if(feedObj.getString("vehicle_code").trim().equals("")){
+                                    item.set_amount("None");
+                                }else {
+                                    item.set_amount(feedObj.getString("vehicle_code"));
+                                }
                                 if(feedObj.getString("assigned_company").trim().equals("")){
                                     item.set_email("None");
                                 }else {
@@ -207,11 +219,11 @@ public class VehicleListFragment extends Fragment implements View.OnClickListene
                                 }else {
                                     item.setpurchase_date(feedObj.getString("vehicle_purchase_date"));
                                 }
-                                if(feedObj.getString("vehicle_purchase_price").trim().equals("")){
+                              /*  if(feedObj.getString("vehicle_purchase_price").trim().equals("")){
                                     item.setpurchase_price("None");
                                 }else {
                                     item.setpurchase_price(feedObj.getString("vehicle_purchase_price"));
-                                }
+                                }*/
                                 if (feedObj.getString("vehicle_picture").equals("")) {
                                     item.setImage("false");
                                 } else {
@@ -221,7 +233,7 @@ public class VehicleListFragment extends Fragment implements View.OnClickListene
                             }
                         }
                         start = dataItem.size();
-                        mVehicleListAdapter = new VehicleListAdapter(getActivity(), dataItem,
+                        mVehicleListAdapter = new VehicleAdapterNew(getActivity(), dataItem,
                                 "vehicle");
                         mrecyclerview.setAdapter(mVehicleListAdapter);
 

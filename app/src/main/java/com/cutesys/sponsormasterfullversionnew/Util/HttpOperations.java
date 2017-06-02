@@ -232,7 +232,8 @@ public class HttpOperations {
         API_ADD_REASON("employeeApi/addleavereason","POST"),
         API_AGENT_PROFILE("RecruitmentApi/agentprofile","POST"),
         API_CANDIDATE_DETAILS("RecruitmentApi/candidatedetails","POST"),
-        API_ATTENDANCEREPORT_ORIGINAL("UserApi/reportattendancelist","POST");
+        API_ATTENDANCEREPORT_ORIGINAL("UserApi/reportattendancelist","POST"),
+        API_PAYROLL_ADVANCELSALARYLIST("payrollApi/advancelist","POST");
 
 
 
@@ -385,6 +386,15 @@ public class HttpOperations {
         return sendRequest(params, APIS.API_COMPANY_ADVANCEPENDINGLIST, "?admin_id="+id+"&Authorization="+
                 authorization+"&start="+start+"&limit=50");
     }
+//advance salary
+    public StringBuilder doadvancesalaryList(final String id, final String authorization, final String start) {
+        HashMap<String, String> params = new HashMap<String, String>();
+        params.put("admin_id", id);
+        params.put("Authorization", authorization);
+        return sendRequest(params, APIS.API_PAYROLL_ADVANCELSALARYLIST, "?admin_id="+id+"&Authorization="+
+                authorization+"&start="+start+"&limit=50");
+    }
+
     public StringBuilder doadvancepaidList(final String id, final String authorization, final String start) {
         HashMap<String, String> params = new HashMap<String, String>();
         params.put("admin_id", id);

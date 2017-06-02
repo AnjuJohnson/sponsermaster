@@ -57,7 +57,7 @@ public class advancepaidadapter extends RecyclerView.Adapter<advancepaidadapter.
             super(itemView);
             this.employeename1 = (TextView) itemView.findViewById(R.id.employeename1);
             this.salary1 = (TextView) itemView.findViewById(R.id.salary2);
-            this.type = (TextView) itemView.findViewById(R.id.typepaid);
+         //   this.type = (TextView) itemView.findViewById(R.id.typepaid);
 
 
             this.approved_loan_amount = (TextView) itemView.findViewById(R.id.advance_amount1);
@@ -92,7 +92,7 @@ public class advancepaidadapter extends RecyclerView.Adapter<advancepaidadapter.
 
         TextView employeename1=holder.employeename1;
         TextView  salary1=holder.salary1;
-        TextView  type=holder.type;
+        //TextView  type=holder.type;
 
 
         TextView  approved_loan_amount=holder.approved_loan_amount;
@@ -102,7 +102,7 @@ public class advancepaidadapter extends RecyclerView.Adapter<advancepaidadapter.
 
         employeename1.setText(mListItem.get(position).getemployee_name());
         salary1.setText(mListItem.get(position).getemployee_salary());
-        type.setText("Type: " +mListItem.get(position).gettype());
+     //   type.setText("Type: " +mListItem.get(position).gettype());
 
 
         approved_loan_amount.setText(mListItem.get(position).getapproved_loan_amount());

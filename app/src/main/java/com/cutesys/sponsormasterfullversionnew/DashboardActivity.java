@@ -77,11 +77,13 @@ import com.cutesys.sponsormasterfullversionnew.Notification.VisaNotificationFrag
 import com.cutesys.sponsormasterfullversionnew.Notification.VisaValidityExpiryNotiFragment;
 import com.cutesys.sponsormasterfullversionnew.Payroll.AdvancePaidListFragment;
 import com.cutesys.sponsormasterfullversionnew.Payroll.AdvancePendingListFragment;
+import com.cutesys.sponsormasterfullversionnew.Payroll.AdvanceSalaryFragment;
 import com.cutesys.sponsormasterfullversionnew.Payroll.DeductionFragment;
 import com.cutesys.sponsormasterfullversionnew.Payroll.SalaryListFragment;
 import com.cutesys.sponsormasterfullversionnew.Payroll.adddeductioncategory;
 import com.cutesys.sponsormasterfullversionnew.Payroll.report_salary;
 import com.cutesys.sponsormasterfullversionnew.Recruitment.AgentListFragment;
+import com.cutesys.sponsormasterfullversionnew.Recruitment.AgentProfile;
 import com.cutesys.sponsormasterfullversionnew.Recruitment.AttendanceReport;
 import com.cutesys.sponsormasterfullversionnew.Recruitment.CandidateEmployee.CandidateToEmployee;
 import com.cutesys.sponsormasterfullversionnew.Recruitment.CategoryFragment;
@@ -692,7 +694,9 @@ public class DashboardActivity extends AppCompatActivity implements Listener, Vi
                 loadFragment(fragment);
                 break;
             case 37:
-                //Salary update
+                //  adavance Salary
+                fragment = new AdvanceSalaryFragment();
+                loadFragment(fragment);
                 break;
             case 80:
                 //Salary list
@@ -923,7 +927,7 @@ public class DashboardActivity extends AppCompatActivity implements Listener, Vi
 
             case 64:
                 //agent list
-                fragment = new AgentListFragment();
+                fragment = new AgentProfile();
                 loadFragment(fragment);
                 break;
 
