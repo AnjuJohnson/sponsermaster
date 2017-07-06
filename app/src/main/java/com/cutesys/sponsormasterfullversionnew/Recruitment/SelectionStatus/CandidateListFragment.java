@@ -256,7 +256,7 @@ public class CandidateListFragment  extends Fragment implements View.OnClickList
                             }
                         }
                         start = dataItem.size();
-                        mAdapter = new CandidateListAdapter(getActivity(), dataItem, "cpy");
+                        mAdapter = new CandidateListAdapter(getActivity(), dataItem, "candidate");
                         cmpy_recycler9.setAdapter(mAdapter);
                         System.out.println(result);
 

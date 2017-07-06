@@ -90,7 +90,12 @@ public class EmployeeListFragment extends Fragment implements View.OnClickListen
         Data_Item = helper.gethomedetails();
         mBadge = (Badge)rootView.findViewById(R.id.badge);
         mBadge.setText(Data_Item.get(0).get("home_emp_notification"));
-
+        mBadge.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mListener.LoadItem(53);
+            }
+        });
         switcher = new Switcher.Builder(getActivity())
                 .addContentView(rootView.findViewById(R.id.mrecyclerview))
                 .addErrorView(rootView.findViewById(R.id.error_view))

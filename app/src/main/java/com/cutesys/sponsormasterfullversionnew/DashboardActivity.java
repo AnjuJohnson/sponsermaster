@@ -80,17 +80,15 @@ import com.cutesys.sponsormasterfullversionnew.Payroll.AdvancePendingListFragmen
 import com.cutesys.sponsormasterfullversionnew.Payroll.AdvanceSalaryFragment;
 import com.cutesys.sponsormasterfullversionnew.Payroll.DeductionFragment;
 import com.cutesys.sponsormasterfullversionnew.Payroll.SalaryListFragment;
-import com.cutesys.sponsormasterfullversionnew.Payroll.adddeductioncategory;
 import com.cutesys.sponsormasterfullversionnew.Payroll.report_salary;
 import com.cutesys.sponsormasterfullversionnew.Recruitment.AgentListFragment;
 import com.cutesys.sponsormasterfullversionnew.Recruitment.AgentProfile;
-import com.cutesys.sponsormasterfullversionnew.Recruitment.AttendanceReport;
+import com.cutesys.sponsormasterfullversionnew.UserManagement.AttendanceReport;
 import com.cutesys.sponsormasterfullversionnew.Recruitment.CandidateEmployee.CandidateToEmployee;
 import com.cutesys.sponsormasterfullversionnew.Recruitment.CategoryFragment;
 import com.cutesys.sponsormasterfullversionnew.Recruitment.CountryFragment;
 import com.cutesys.sponsormasterfullversionnew.Recruitment.InterviewFragment;
 import com.cutesys.sponsormasterfullversionnew.Recruitment.JobFragment;
-import com.cutesys.sponsormasterfullversionnew.Recruitment.MedicalClearedList;
 import com.cutesys.sponsormasterfullversionnew.Recruitment.MedicalStatusFragment;
 import com.cutesys.sponsormasterfullversionnew.Recruitment.QualificationFragment;
 import com.cutesys.sponsormasterfullversionnew.Recruitment.Report.ReportMedicalStatus;
@@ -113,8 +111,6 @@ import com.cutesys.sponsormasterfullversionnew.Subclasses.MyProfileFragment;
 import com.cutesys.sponsormasterfullversionnew.UserManagement.AttendanceListFragment;
 import com.cutesys.sponsormasterfullversionnew.UserManagement.LoginListFragment;
 import com.cutesys.sponsormasterfullversionnew.UserManagement.WorkListFragment;
-import com.cutesys.sponsormasterfullversionnew.UserManagement.attedance_reportFragment;
-import com.cutesys.sponsormasterfullversionnew.UserManagement.attendancelistreportfragment;
 import com.cutesys.sponsormasterfullversionnew.Vehicle.ExpensesTypeFragment;
 import com.cutesys.sponsormasterfullversionnew.Vehicle.InsuranceCompanyFragment;
 import com.cutesys.sponsormasterfullversionnew.Vehicle.InsuranceTypeFragment;
@@ -372,7 +368,10 @@ public class DashboardActivity extends AppCompatActivity implements Listener, Vi
                             mFragment = new DesignationFragment();
                             loadFragment(mFragment);
                             break;
-
+                        case "CANDIDATE":
+                            mFragment = new SelectionStatusFragment();
+                            loadFragment(mFragment);
+                            break;
                         case "LOGIN LIST":
                             mFragment = new LoginListFragment();
                             loadFragment(mFragment);

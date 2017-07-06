@@ -9,7 +9,7 @@ public class ListItem  {
     private String id, code, name, email, address, model, manufacture,month,year,entry,
             phone,refno,visanum,expiry,amount, bank_fee, sponsor_fee, company_fee, advance_fee,
             balance_fee, image,designation,pid,employment_id,status,purchase_date,purchase_price,employee_employment_id,employee_age,
-    employment_duration,employee_status,employee_code,employee_visatype;
+    employment_duration,employee_status,employee_code,employee_visatype,in;
     private String[] title;
     private String[] title_date;
 
@@ -237,7 +237,13 @@ public class ListItem  {
     public void set_balance_fee(String balance_fee) {
         this.balance_fee = balance_fee;
     }
+    public String get_in() {
+        return in;
+    }
 
+    public void set_in(String in) {
+        this.in = in;
+    }
     public String get_employee_employment_id() {
         return employee_employment_id;
     }

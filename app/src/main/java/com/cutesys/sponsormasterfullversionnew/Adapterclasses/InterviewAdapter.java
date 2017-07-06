@@ -20,6 +20,7 @@ import android.widget.Toast;
 import com.cutesys.sponsormasterfullversionnew.Helperclasses.AllListItem;
 import com.cutesys.sponsormasterfullversionnew.R;
 import com.cutesys.sponsormasterfullversionnew.Recruitment.AddTravelDetailsFragment;
+import com.cutesys.sponsormasterfullversionnew.Recruitment.Interviewprofile;
 
 import java.util.List;
 
@@ -32,13 +33,13 @@ public class InterviewAdapter extends RecyclerView.Adapter {
     private List<AllListItem> travelitems;
     public Context mContext;
     public Activity mActivity;
-    //String mStatus;
+    String mStatus;
 
-    public InterviewAdapter(Activity mActivity,Context mContext,List<AllListItem> travelitems) {
+    public InterviewAdapter(Activity mActivity,Context mContext,List<AllListItem> travelitems,String Status) {
         this.travelitems = travelitems;
         this.mContext = mContext;
         this.mActivity = mActivity;
-        //this.mStatus = Status;
+        this.mStatus = Status;
     }
 
     @Override
@@ -63,12 +64,11 @@ public class InterviewAdapter extends RecyclerView.Adapter {
         myViewHolder.mInterviewDetails.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent=new Intent(mContext,AddTravelDetailsFragment.class);
+                Intent intent=new Intent(mContext,Interviewprofile.class);
                 intent.putExtra("ID",dataItem.getemployee_id());
+                intent.putExtra("STATUS",mStatus);
+                intent.putExtra("NAME",dataItem.getEmployee_name());
                 mContext.startActivity(intent);
-
-
-
 
             }
         });

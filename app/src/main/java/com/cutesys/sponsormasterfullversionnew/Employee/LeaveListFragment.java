@@ -154,14 +154,16 @@ public class LeaveListFragment extends Fragment implements View.OnClickListener 
         switch (buttonId) {
 
             case R.id.error_label_retry:
+                dataItem.clear();
                 InitGetData(false);
                 break;
             case R.id.empty_label_retry:
+                dataItem.clear();
                 InitGetData(false);
                 break;
             case R.id.progressrestart:
                 if (mConfig.isOnline(getActivity())) {
-dataItem.clear();
+                     dataItem.clear();
                     LoadCompyListInitiate mLoadComapnyDetails = new LoadCompyListInitiate(sPreferences.getString("ID", ""),
                             sPreferences.getString("AUTHORIZATION", ""),String.valueOf(start));
                     mLoadComapnyDetails.execute((Void) null);

@@ -7,6 +7,7 @@ import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.Configuration;
+import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.net.Uri;
 import android.os.AsyncTask;
@@ -48,6 +49,8 @@ import javax.net.ssl.SSLContext;
 import javax.net.ssl.TrustManager;
 import javax.net.ssl.X509TrustManager;
 
+import static android.content.Context.NOTIFICATION_SERVICE;
+
 /**
  * Created by Athira on 3/2/2017.
  */
@@ -60,7 +63,7 @@ public class OtherProfileDocumentAdapter extends RecyclerView.Adapter {
     private ArrayList<ListItem> mListItem;
     private ListItem item;
     private int mMaxProgress = 100;
-
+    String path;
     String mStatus;
     int widthPixels , heightPixels;
     float scaleFactor;
@@ -198,6 +201,7 @@ public class OtherProfileDocumentAdapter extends RecyclerView.Adapter {
                     webSettings.setBuiltInZoomControls(true);
                     loaddoc.getSettings().setLoadWithOverviewMode(true);
                     loaddoc.getSettings().setUseWideViewPort(true);
+                    Log.d("rrrr",uri.toString());
                     loaddoc.loadUrl(
                             "http://docs.google.com/gview?embedded=true&url=" + uri);
 
@@ -231,7 +235,6 @@ public class OtherProfileDocumentAdapter extends RecyclerView.Adapter {
         mViewHolder.mDownload.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
 
                 clickedPos = position;
                 notifyDataSetChanged();
@@ -317,10 +320,11 @@ public class OtherProfileDocumentAdapter extends RecyclerView.Adapter {
                 } catch (Exception e) {
                 }
                 try {
+
                     URL url = new URL(f_url[0]);
                     URLConnection connection = url.openConnection();
                     connection.connect();
-                    int lengthOfFile = connection.getContentLength();
+                    int lenghtOfFile = connection.getContentLength();
 
                     if (f_url[0].contains(".jpeg")) {
                         extension = ".jpeg";
@@ -346,17 +350,15 @@ public class OtherProfileDocumentAdapter extends RecyclerView.Adapter {
                             Log.d("App", "failed to create directory");
                         }
                     }
-
                     // Output stream
                     OutputStream output = new FileOutputStream("/sdcard/Sponsor Master/" + mName + "" + extension);
-
+                    //path="/sdcard/Sponsor Master/\"+mName+\"\"+extension";
                     byte data[] = new byte[1024];
 
                     long total = 0;
 
                     while ((count = input.read(data)) != -1) {
                         total += count;
-
 
                         // writing data to file
                         output.write(data, 0, count);
@@ -372,8 +374,9 @@ public class OtherProfileDocumentAdapter extends RecyclerView.Adapter {
                 } catch (Exception e) {
                     Log.e("Error: ", e.getMessage());
                 }
-            }catch (Exception e) {
-                CustomToast.error(mContext,"File not found").show();
+            } catch (Exception e) {
+                CustomToast.error(mContext,"file not found").show();
+                //Log.e("Error: ", e.getMessage());
             }
             return null;
         }
@@ -388,30 +391,31 @@ public class OtherProfileDocumentAdapter extends RecyclerView.Adapter {
             mFloatingActionButton.hideProgress();
             temp = true;
             CustomToast.success(mContext,"Download Complete").show();
-//            ShowNotification("/sdcard/"+mName+""+extension);
-            addNotification();
+            //  ShowNotification("/sdcard/"+mName+""+extension);
+           // sendnotification();
         }
     }
-    private void addNotification() {
-        NotificationCompat.Builder builder =
-                new NotificationCompat.Builder(mContext);
-                        builder.setSmallIcon(R.mipmap.ic_launcher);
-                        builder.setContentTitle("Notifications Example");
-                        builder.setContentText("This is a test notification");
+    public void sendnotification() {
+        NotificationCompat.Builder builder = new NotificationCompat.Builder(mContext);
+        builder.setSmallIcon(android.R.drawable.stat_sys_download_done);
 
-        Intent notificationIntent = new Intent(mContext, OtherProfileDocumentAdapter.class);
-        PendingIntent contentIntent = PendingIntent.getActivity(mContext, 0, notificationIntent,
-                PendingIntent.FLAG_UPDATE_CURRENT);
-        builder.setContentIntent(contentIntent);
+        Intent intent = new Intent();
+        intent.setAction(Intent.ACTION_VIEW);
+        // intent.setDataAndType(Uri.parse("file://" + "/sdcard/Sponsor Master/permission.jpg"), "image/*");
+        intent.setDataAndType(Uri.parse("file://" + "/sdcard/Sponsor Master/"), "image/*");
+        // mContext.startActivity(intent);
 
-        // Add as notification
-        NotificationManager manager = (NotificationManager) mContext.getSystemService(Context.NOTIFICATION_SERVICE);
-        manager.notify(0, builder.build());
+        PendingIntent pendingIntent = PendingIntent.getActivity(mContext, 0, intent, 0);
+        builder.setContentIntent(pendingIntent);
+        builder.setLargeIcon(BitmapFactory.decodeResource(mContext.getResources(), R.mipmap.download_complete));
+        builder.setContentTitle("Download Complete");
+        builder.setContentText("Tap to view the downloaded document.");
+
+        NotificationManager notificationManager = (NotificationManager) mContext.getSystemService(NOTIFICATION_SERVICE);
+
+        // Will display the notification in the notification bar
+        notificationManager.notify(1, builder.build());
+
     }
 
-//    private void ShowNotification(String url){
-//        NotificationCompat.Builder builder = new NotificationCompat.Builder(mContext);
-//        builder.setSmallIcon(R.mipmap.ic_launcher);
-//       // File pdfFile = new File("file://" + "/sdcard/download2.jpg","image");
-//    }
 }

@@ -186,7 +186,7 @@ public class InterviewFragment extends Fragment implements View.OnClickListener 
                             }
                         }
                         start = dataItem.size();
-                        mInterviewAdapter = new InterviewAdapter(getActivity(),getActivity(),dataItem);
+                        mInterviewAdapter = new InterviewAdapter(getActivity(),getActivity(),dataItem,"interview");
                         emptravelled.setAdapter(mInterviewAdapter);
 
                     }else {

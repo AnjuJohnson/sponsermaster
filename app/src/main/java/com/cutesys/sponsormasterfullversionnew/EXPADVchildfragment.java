@@ -1,10 +1,9 @@
-package com.cutesys.sponsormasterfullversionnew.Subclasses;
+package com.cutesys.sponsormasterfullversionnew;
 
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
@@ -14,13 +13,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-
 import com.cutesys.sponsermasterlibrary.Switcher.Switcher;
-import com.cutesys.sponsormasterfullversionnew.Adapterclasses.OtherProfileDocumentAdapter;
+import com.cutesys.sponsormasterfullversionnew.Adapterclasses.EXPADVadapter;
 import com.cutesys.sponsormasterfullversionnew.Helperclasses.ListItem;
 import com.cutesys.sponsormasterfullversionnew.Helperclasses.ProfileItem;
-import com.cutesys.sponsormasterfullversionnew.OtherProfileActivity;
-import com.cutesys.sponsormasterfullversionnew.R;
 
 import org.apache.commons.lang3.StringUtils;
 
@@ -30,17 +26,17 @@ import java.util.ArrayList;
  * Created by Kris on 3/8/2017.
  */
 
-public class DocumentChildFragment  extends Fragment implements View.OnClickListener{
+public class EXPADVchildfragment extends Fragment implements View.OnClickListener{
 
     private Switcher switcher;
     private RecyclerView mrecyclerview;
     private TextView error_label_retry, empty_label_retry;
 
     private OtherProfileActivity mOtherProfileActivity;
-    private OtherProfileDocumentAdapter mOtherProfileDocumentAdapter;
+    private EXPADVadapter mDocDetailsAdapter;
     BroadcastReceiver receiver;
     ArrayList<ListItem> dataItem;
-
+    ProfileItem mProfileItem ;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -88,6 +84,8 @@ public class DocumentChildFragment  extends Fragment implements View.OnClickList
             @Override
             public void onReceive(Context context, Intent intent) {
                 try {
+                    mProfileItem = OtherProfileActivity.dataItem.get(0);
+
                     if (intent.getAction().equals("EMPTYGET")) {
                         switcher.showEmptyView();
 
@@ -97,39 +95,60 @@ public class DocumentChildFragment  extends Fragment implements View.OnClickList
                     } else if (intent.getAction().equals("ERRORNETGET")) {
                         switcher.showErrorView("No Internet Connection");
 
+                    }
+
+                    else if (mProfileItem.getDatatitle().length == 0) {
+                        switcher.showEmptyView();
+
                     } else {
+                        switcher.showContentView();
 
-                        ProfileItem mProfileItem = OtherProfileActivity.dataItem.get(0);
+                        String status = "";
+                        dataItem = new ArrayList<>();
 
-                        if(mProfileItem.getfile_path().length == 0){
-                            switcher.showEmptyView();
 
-                        } else {
-                            switcher.showContentView();
-                            dataItem = new ArrayList<>();
-                            for (int i = 0; i < mProfileItem.getfile_path().length; i++) {
+                        if (intent.getAction().equals("COMPANYGET")) {
 
-                                if (!mProfileItem.getfile_path().equals("None")) {
-                                    ListItem item = new ListItem();
-                                    item.set_name(StringUtils.capitalize(mProfileItem.getfile_title()[i]
-                                            .toLowerCase().trim().replaceAll("[-+_.^:,]", " ")));
-                                    item.set_email(mProfileItem.getfile_path()[i].replaceAll(" ", "%20"));
-                                    dataItem.add(item);
-                                    System.out.println("11111:" + mProfileItem.getfile_path()[i].replaceAll(" ", "%20"));
-                                }
+                            status = "company";
+
+
+
+                        } else  if (intent.getAction().equals("EMPLOYEEGET")) {
+
+
+                        } else if (intent.getAction().equals("CANDIDATEGET")) {
+
+
+                            for (int i = 0; i < mProfileItem.getDatatitle().length; i++) {
+
+                                ListItem item = new ListItem();
+                                item.set_name(StringUtils.capitalize(mProfileItem.getfile_qualification()[i]
+                                        .toLowerCase().trim()));
+                                item.set_address(mProfileItem.getfile_qstatus()[i]);
+
+                                dataItem.add(item);
                             }
 
-                            mOtherProfileDocumentAdapter = new OtherProfileDocumentAdapter(getActivity(),
-                                    dataItem);
-                            mrecyclerview.setAdapter(mOtherProfileDocumentAdapter);
+
+
+                        }else if (intent.getAction().equals("VISAGET")) {
+
+                            status = "visa";
                         }
+
+
+                        mDocDetailsAdapter = new EXPADVadapter(getActivity(), dataItem, status);
+                        mrecyclerview.setAdapter(mDocDetailsAdapter);
+
                     }
+
                 } catch (Exception e) {
                 }
             }
         };
         getActivity().registerReceiver(receiver, filter);
     }
+
 
     @Override
     public void onClick(View view) {

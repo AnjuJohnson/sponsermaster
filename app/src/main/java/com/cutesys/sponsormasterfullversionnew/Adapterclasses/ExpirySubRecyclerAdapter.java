@@ -37,6 +37,12 @@ public class ExpirySubRecyclerAdapter extends RecyclerView.Adapter {
         mBackgroundColors.add(R.mipmap.expirycard);
         mBackgroundColors.add(R.mipmap.expirycard);
         mBackgroundColors.add(R.mipmap.expirycard);
+        mBackgroundColors.add(R.mipmap.expirycard);
+        mBackgroundColors.add(R.mipmap.expirycard);
+        mBackgroundColors.add(R.mipmap.expirycard);
+        mBackgroundColors.add(R.mipmap.expirycard);
+        mBackgroundColors.add(R.mipmap.expirycard);
+
     }
 
     @Override

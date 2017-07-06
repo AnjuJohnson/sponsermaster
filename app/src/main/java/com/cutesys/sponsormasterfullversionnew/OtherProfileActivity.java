@@ -19,9 +19,12 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
+
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
+
 
 import com.cutesys.sponsermasterlibrary.Button.FloatingActionButton;
 import com.cutesys.sponsermasterlibrary.Button.FloatingActionMenu;
@@ -30,6 +33,7 @@ import com.cutesys.sponsermasterlibrary.CustomToast;
 import com.cutesys.sponsermasterlibrary.Switcher.Switcher;
 import com.cutesys.sponsormasterfullversionnew.Helperclasses.ProfileItem;
 import com.cutesys.sponsormasterfullversionnew.Subclasses.AdvancedChildFragment;
+import com.cutesys.sponsormasterfullversionnew.Subclasses.BankDocDetailsChild;
 import com.cutesys.sponsormasterfullversionnew.Subclasses.DocumentChildFragment;
 import com.cutesys.sponsormasterfullversionnew.Subclasses.ProfileChildFragment;
 import com.cutesys.sponsormasterfullversionnew.Util.Config;
@@ -41,6 +45,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 /**
  * Created by Kris on 3/8/2017.
@@ -116,6 +121,7 @@ public class OtherProfileActivity extends AppCompatActivity implements View.OnCl
                 || (Status.equals("issued")) || (Status.equals("enter"))
                 || (Status.equals("notenter")) || (Status.equals("report"))) {
             menu.setVisibility(View.GONE);
+
         } else {
             menu.setVisibility(View.VISIBLE);
         }
@@ -155,7 +161,23 @@ public class OtherProfileActivity extends AppCompatActivity implements View.OnCl
             }
         });
 
-        setupViewPager(pf_pager);
+        if ((Status.equals("vehicle")) || (Status.equals("flipvehicle"))) {
+            setupViewPagerother(pf_pager);
+
+        }
+        else if ((Status.equals("company"))) {
+            setupViewPagercompany(pf_pager);
+        }
+        else if ((Status.equals("candidate")) ) {
+            setupViewPagercandidate(pf_pager);
+
+        }else  if ((Status.equals("visa")) || (Status.equals("new"))
+                || (Status.equals("issued")) || (Status.equals("enter"))
+                || (Status.equals("notenter")) || (Status.equals("report"))) {
+            setupViewPagerother(pf_pager);
+        } else {
+            setupViewPager(pf_pager);
+        }
         tablayout.setupWithViewPager(pf_pager);
 
         dataItem = new ArrayList<>();
@@ -165,10 +187,27 @@ public class OtherProfileActivity extends AppCompatActivity implements View.OnCl
     private void setupViewPager(ViewPager viewPager) {
         ProfileViewpagerAdapter pf_adapter = new ProfileViewpagerAdapter(getApplicationContext(),
                 getSupportFragmentManager());
+        pf_pager.setOffscreenPageLimit(4);
+        viewPager.setAdapter(pf_adapter);
+    }
+    private void setupViewPagerother(ViewPager viewPager) {
+        ProfileViewpagerOtherAdapter pf_adapter = new ProfileViewpagerOtherAdapter(getApplicationContext(),
+                getSupportFragmentManager());
         pf_pager.setOffscreenPageLimit(3);
         viewPager.setAdapter(pf_adapter);
     }
-
+    private void setupViewPagercompany(ViewPager viewPager) {
+        ProfileViewpagercompanyAdapter pf_adapter = new ProfileViewpagercompanyAdapter(getApplicationContext(),
+                getSupportFragmentManager());
+        pf_pager.setOffscreenPageLimit(6);
+        viewPager.setAdapter(pf_adapter);
+    }
+    private void setupViewPagercandidate(ViewPager viewPager) {
+        ProfileViewpagercandidateAdapter pf_adapter = new ProfileViewpagercandidateAdapter(getApplicationContext(),
+                getSupportFragmentManager());
+        pf_pager.setOffscreenPageLimit(5);
+        viewPager.setAdapter(pf_adapter);
+    }
     public void InitGetData(boolean temp){
         Config mConfig = new Config(getApplicationContext());
         if(mConfig.isOnline(getApplicationContext())){
@@ -256,7 +295,11 @@ public class OtherProfileActivity extends AppCompatActivity implements View.OnCl
             if ((Status.equals("company"))) {
                 result = httpOperations.doCOMAPNY_DETAILS(mId, mAuthorization, mStatusID);
 
-            }  else if ((Status.equals("employee")) || (Status.equals("flipemployee"))
+            }
+            else if ((Status.equals("candidate"))) {
+                result = httpOperations.doCANDIDATE_DETAILS(mId, mAuthorization, mStatusID);
+
+            }else if ((Status.equals("employee")) || (Status.equals("flipemployee"))
                     || (Status.equals("flipcompany"))) {
                 result = httpOperations.doEMPLOYEE_DETAILS(mId, mAuthorization, mStatusID);
 
@@ -268,14 +311,14 @@ public class OtherProfileActivity extends AppCompatActivity implements View.OnCl
                     || (Status.equals("notenter")) || (Status.equals("report"))) {
                 result = httpOperations.doVISA_DETAILS(mId, mAuthorization, mStatusID);
             }
-            if ((Status.equals("medicalclearedlist"))) {
-                result = httpOperations.doCANDIDATE_DETAILS(mId, mAuthorization, mStatusID);
-
-            }
-            if ((Status.equals("agent"))) {
-                result = httpOperations.doAgentProfile(mId, mAuthorization, mStatusID);
-
-            }
+//            if ((Status.equals("medicalclearedlist"))) {
+//                result = httpOperations.doCANDIDATE_DETAILS(mId, mAuthorization, mStatusID);
+//
+//            }
+//            if ((Status.equals("agent"))) {
+//                result = httpOperations.doAgentProfile(mId, mAuthorization, mStatusID);
+//
+//            }
             System.out.println("yyyyyyyy"+result);
             return result;
 
@@ -299,7 +342,7 @@ public class OtherProfileActivity extends AppCompatActivity implements View.OnCl
                             JSONArray companyArray = jsonObj.getJSONArray("company_details");
                             JSONArray companydocArray = jsonObj.getJSONArray("companyDocuments");
 
-                            /*if((!jsonObj.getString("company_logo")
+                            if ((!jsonObj.getString("company_logo")
                                     .replaceAll(" ", "%20").equals(""))
                                     && (!jsonObj.getString("company_logo")
                                     .replaceAll(" ", "%20").equals("null"))) {
@@ -310,11 +353,11 @@ public class OtherProfileActivity extends AppCompatActivity implements View.OnCl
                                         .placeholder(R.drawable.profile)
                                         .error(R.drawable.profile)
                                         .into(profile);
-                            } else*/ {
+                            } else {
                                 profile.setImageResource(R.drawable.profile);
                             }
-                            String[] profiletitle = new String[9];
-                            String[] profilesubtitle = new String[9];
+                            String[] profiletitle = new String[10];
+                            String[] profilesubtitle = new String[10];
                             String[] advtitle = new String[6];
                             String[] advsubtitle = new String[6];
 
@@ -322,7 +365,8 @@ public class OtherProfileActivity extends AppCompatActivity implements View.OnCl
 
                                 JSONObject companyArrayObj = (JSONObject) companyArray.get(i);
 
-                                profiletitle[0] = "About";
+                                profiletitle[0] = "Company ID";
+                                profiletitle[9] = "About";
                                 profiletitle[1] = "Owner";
                                 profiletitle[2] = "Address Line 1";
                                 profiletitle[3] = "Address Line 2";
@@ -338,82 +382,86 @@ public class OtherProfileActivity extends AppCompatActivity implements View.OnCl
                                 advtitle[3] = "Country";
                                 advtitle[4] = "Postbox";
                                 advtitle[5] = "Sponsor Fee";
-
-                                if (companyArrayObj.getString("company_about").equals("")){
+                                if (companyArrayObj.getString("company_pid").equals("")) {
                                     profilesubtitle[0] = "None";
                                 } else {
-                                    profilesubtitle[0] = companyArrayObj.getString("company_about");
+                                    profilesubtitle[0] = companyArrayObj.getString("company_pid");
                                 }
-                                if (companyArrayObj.getString("company_owner").equals("")){
+                                if (companyArrayObj.getString("company_about").equals("")) {
+                                    profilesubtitle[9] = "None";
+                                } else {
+                                    profilesubtitle[9] = companyArrayObj.getString("company_about");
+                                }
+                                if (companyArrayObj.getString("company_owner").equals("")) {
                                     profilesubtitle[1] = "None";
                                 } else {
                                     profilesubtitle[1] = companyArrayObj.getString("company_owner");
                                 }
-                                if (companyArrayObj.getString("company_address1").equals("")){
+                                if (companyArrayObj.getString("company_address1").equals("")) {
                                     profilesubtitle[2] = "None";
                                 } else {
                                     profilesubtitle[2] = companyArrayObj.getString("company_address1");
                                 }
-                                if (companyArrayObj.getString("company_address2").equals("")){
+                                if (companyArrayObj.getString("company_address2").equals("")) {
                                     profilesubtitle[3] = "None";
                                 } else {
                                     profilesubtitle[3] = companyArrayObj.getString("company_address2");
                                 }
-                                if (companyArrayObj.getString("company_area").equals("")){
+                                if (companyArrayObj.getString("company_area").equals("")) {
                                     profilesubtitle[4] = "None";
                                 } else {
                                     profilesubtitle[4] = companyArrayObj.getString("company_area");
                                 }
-                                if (companyArrayObj.getString("company_city").equals("")){
+                                if (companyArrayObj.getString("company_city").equals("")) {
                                     profilesubtitle[5] = "None";
                                 } else {
                                     profilesubtitle[5] = companyArrayObj.getString("company_city");
                                 }
-                                if (companyArrayObj.getString("company_email").equals("")){
+                                if (companyArrayObj.getString("company_email").equals("")) {
                                     profilesubtitle[6] = "None";
                                     mEmailid = "None";
                                 } else {
                                     profilesubtitle[6] = companyArrayObj.getString("company_email");
                                     mEmailid = companyArrayObj.getString("company_email");
                                 }
-                                if (companyArrayObj.getString("company_phone").equals("")){
+                                if (companyArrayObj.getString("company_phone").equals("")) {
                                     profilesubtitle[7] = "None";
                                     mContactno = "None";
                                 } else {
                                     profilesubtitle[7] = companyArrayObj.getString("company_phone");
                                     mContactno = companyArrayObj.getString("company_phone");
                                 }
-                                if (companyArrayObj.getString("company_fax").equals("")){
+                                if (companyArrayObj.getString("company_fax").equals("")) {
                                     profilesubtitle[8] = "None";
                                 } else {
                                     profilesubtitle[8] = companyArrayObj.getString("company_fax");
                                 }
-                                if (companyArrayObj.getString("company_category").equals("")){
+                                if (companyArrayObj.getString("company_category").equals("")) {
                                     advsubtitle[0] = "None";
                                 } else {
                                     advsubtitle[0] = companyArrayObj.getString("company_category");
                                 }
-                                if (companyArrayObj.getString("company_door").equals("")){
+                                if (companyArrayObj.getString("company_door").equals("")) {
                                     advsubtitle[1] = "None";
                                 } else {
                                     advsubtitle[1] = companyArrayObj.getString("company_door");
                                 }
-                                if (companyArrayObj.getString("company_region").equals("")){
+                                if (companyArrayObj.getString("company_region").equals("")) {
                                     advsubtitle[2] = "None";
                                 } else {
                                     advsubtitle[2] = companyArrayObj.getString("company_region");
                                 }
-                                if (companyArrayObj.getString("company_country").equals("")){
+                                if (companyArrayObj.getString("company_country").equals("")) {
                                     advsubtitle[3] = "None";
                                 } else {
                                     advsubtitle[3] = companyArrayObj.getString("company_country");
                                 }
-                                if (companyArrayObj.getString("company_postbox").equals("")){
+                                if (companyArrayObj.getString("company_postbox").equals("")) {
                                     advsubtitle[4] = "None";
                                 } else {
                                     advsubtitle[4] = companyArrayObj.getString("company_postbox");
                                 }
-                                if (companyArrayObj.getString("company_sponsor_fee").equals("")){
+                                if (companyArrayObj.getString("company_sponsor_fee").equals("")) {
                                     advsubtitle[5] = "None";
                                 } else {
                                     advsubtitle[5] = companyArrayObj.getString("company_sponsor_fee");
@@ -437,6 +485,46 @@ public class OtherProfileActivity extends AppCompatActivity implements View.OnCl
                                     docdatadate[j] = companydocArrayObj.getString("file_path").replaceAll(" ", "%20");
                                 }
                             }
+                            JSONArray BANKdataarray = jsonObj.getJSONArray("bank_data");
+
+                            String[] BANKNAME= new String[BANKdataarray.length()];
+                            String[] BANKCODE= new String[BANKdataarray.length()];
+                            String[] BANKACCOUNT= new String[BANKdataarray.length()];
+                            String[] BANKIBNNO= new String[BANKdataarray.length()];
+
+
+
+
+                            for (int k = 0; k < BANKdataarray.length(); k++) {
+
+                                JSONObject BANKdatadetails = (JSONObject) BANKdataarray.get(k);
+                                BANKNAME[k] = BANKdatadetails.getString("bank_name");
+                                BANKCODE[k] = BANKdatadetails.getString("bank_code");
+                                BANKACCOUNT[k] = BANKdatadetails.getString("company_account_no");
+                                BANKIBNNO[k] = BANKdatadetails.getString("company_iban_no");
+
+
+
+                            }
+
+
+                            JSONArray docdataarray = jsonObj.getJSONArray("company_doc_data");
+
+                            String[] title = new String[docdataarray.length()];
+                            String[] data = new String[docdataarray.length()];
+                            String[] owner = new String[docdataarray.length()];
+                            String[] start = new String[docdataarray.length()];
+                            String[] end = new String[docdataarray.length()];
+
+                            for (int k = 0; k < docdataarray.length(); k++) {
+
+                                JSONObject docdatadetails = (JSONObject) docdataarray.get(k);
+                                title[k] = docdatadetails.getString("doc_title");
+                                data[k] = docdatadetails.getString("doc_data");
+                                owner[k] = docdatadetails.getString("doc_owner");
+                                start[k] = docdatadetails.getString("doc_start_date");
+                                end[k] = docdatadetails.getString("doc_end_date");
+                            }
 
                             ProfileItem mitem = new ProfileItem();
                             mitem.setProfile_title(profiletitle);
@@ -445,18 +533,243 @@ public class OtherProfileActivity extends AppCompatActivity implements View.OnCl
                             mitem.setAdvanced_subtitile(advsubtitle);
                             mitem.setfile_title(docdata);
                             mitem.setfile_path(docdatadate);
+                            mitem.setDatatitle(title);
+                            mitem.setDatadls(data);
+                            mitem.setDataowner(owner);
+                            mitem.setDatastart(start);
+                            mitem.setDataend(end);
+                            mitem.set_BANKNAME(BANKNAME);
+                            mitem.set_BANKCODE(BANKCODE);
+                            mitem.set_BANKACCOUNT(BANKACCOUNT);
+                            mitem.set_BANKIBNNO(BANKIBNNO);
                             dataItem.add(mitem);
 
                             Intent intent = new Intent("COMPANYGET");
                             sendBroadcast(intent);
 
-                        } else if ((Status.equals("employee")) || (Status.equals("flipemployee"))
-                                || (Status.equals("flipcompany"))) {
 
+
+                        }
+
+                        else  if ((Status.equals("candidate"))) {
+
+                            JSONArray companyArray = jsonObj.getJSONArray("candidate_details");
+                            JSONArray companydocArray = jsonObj.getJSONArray("candidate_Documents");
+
+                            if((!jsonObj.getString("candidate_profile_pic")
+                                    .replaceAll(" ", "%20").equals(""))
+                                    && (!jsonObj.getString("candidate_profile_pic")
+                                    .replaceAll(" ", "%20").equals("null"))) {
+
+                                Picasso.with(getApplicationContext())
+                                        .load(jsonObj.getString("candidate_profile_pic")
+                                                .replaceAll(" ", "%20"))
+                                        .placeholder(R.drawable.profile)
+                                        .error(R.drawable.profile)
+                                        .into(profile);
+                            } else {
+                                profile.setImageResource(R.drawable.profile);
+                            }
+
+                            String[] profiletitle = new String[12];
+                            String[] profilesubtitle = new String[12];
+
+                            for (int i = 0; i < companyArray.length(); i++) {
+
+                                JSONObject companyArrayObj = (JSONObject) companyArray.get(i);
+
+                                profiletitle[0] = "Candidate ID";
+                                profiletitle[1] = "Gender";
+                                profiletitle[2] = "Date of Birth";
+                                profiletitle[3] = "Nationality";
+                                profiletitle[4] = "Address";
+                                profiletitle[5] = "City";
+                                profiletitle[6] = "Email";
+                                profiletitle[7] = "Zipcode";
+                                profiletitle[8] = "Phone";
+                                profiletitle[9] = "Applied for Interview";
+                                profiletitle[10] = "Applied for Job position";
+                                profiletitle[11] = "Applied for Job Category";
+
+
+                                if (companyArrayObj.getString("candidate_code").equals("")) {
+                                    profilesubtitle[0] = "None";
+                                } else {
+                                    profilesubtitle[0] = companyArrayObj.getString("candidate_code");
+                                }
+                                if (companyArrayObj.getString("candidate_gender").equals("")) {
+                                    profilesubtitle[1] = "None";
+                                } else {
+                                    profilesubtitle[1] = companyArrayObj.getString("candidate_gender");
+                                }
+                                if (companyArrayObj.getString("candidate_dob").equals("")) {
+                                    profilesubtitle[2] = "None";
+                                } else {
+                                    profilesubtitle[2] = companyArrayObj.getString("candidate_dob");
+                                }
+                                if (companyArrayObj.getString("candidate_nationality").equals("")) {
+                                    profilesubtitle[3] = "None";
+                                } else {
+                                    profilesubtitle[3] = companyArrayObj.getString("candidate_nationality");
+                                }
+                                if (companyArrayObj.getString("candidate_doorno").equals("")) {
+                                    profilesubtitle[4] = "None";
+                                } else {
+                                    profilesubtitle[4] = companyArrayObj.getString("candidate_doorno");
+                                }
+                                if (companyArrayObj.getString("candidate_city").equals("")) {
+                                    profilesubtitle[5] = "None";
+                                } else {
+                                    profilesubtitle[5] = companyArrayObj.getString("candidate_city");
+                                }
+                                if (companyArrayObj.getString("candidate_email").equals("")) {
+                                    profilesubtitle[6] = "None";
+                                } else {
+                                    profilesubtitle[6] = companyArrayObj.getString("candidate_email");
+                                }
+                                if (companyArrayObj.getString("candidate_zipcode").equals("")) {
+                                    profilesubtitle[7] = "None";
+                                } else {
+                                    profilesubtitle[7] = companyArrayObj.getString("candidate_zipcode");
+                                }
+                                if (companyArrayObj.getString("candidate_phone").equals("")) {
+                                    profilesubtitle[8] = "None";
+
+                                } else {
+                                    profilesubtitle[8] = companyArrayObj.getString("candidate_phone");
+                                    //mEmailid = companyArrayObj.getString("company_email");
+                                }
+                                if (companyArrayObj.getString("interview_name").equals("")) {
+                                    profilesubtitle[9] = "None";
+                                    //mContactno = "None";
+                                } else {
+                                    profilesubtitle[9] = companyArrayObj.getString("interview_name");
+                                    //mContactno = companyArrayObj.getString("company_phone");
+                                }
+                                if (companyArrayObj.getString("application_job_position").equals("")) {
+                                    profilesubtitle[10] = "None";
+                                } else {
+                                    profilesubtitle[10] = companyArrayObj.getString("application_job_position");
+                                }
+                                if (companyArrayObj.getString("application_job_category").equals("")) {
+                                    profilesubtitle[11] = "None";
+                                } else {
+                                    profilesubtitle[11] = companyArrayObj.getString("application_job_category");
+                                }
+
+                            }
+
+                            String[] docdata = new String[companydocArray.length()];
+                            String[] docdatadate = new String[companydocArray.length()];
+
+                            for (int j = 0; j < companydocArray.length(); j++) {
+
+                                JSONObject companydocArrayObj = (JSONObject) companydocArray.get(j);
+                                if (companydocArrayObj.getString("file_name").equals("")) {
+                                    docdata[j] = "None";
+                                } else {
+                                    docdata[j] = companydocArrayObj.getString("file_name");
+                                }
+                                if (companydocArrayObj.getString("file_path").equals("")) {
+                                    docdatadate[j] = "-";
+                                } else {
+                                    docdatadate[j] = companydocArrayObj.getString("file_path").replaceAll(" ", "%20");
+                                }
+                            }
+
+//                            String[] title = new String[6];
+//                            String[] data = new String[6];
+//                            String[] start = new String[6];
+//                            String[] end = new String[6];
+
+                            JSONArray docdataarray = jsonObj.getJSONArray("candidate_doc_data");
+
+
+
+                            String[] title = new String[docdataarray.length()];
+                            // String[] data = new String[docdataarray.length()];
+                            //String[] owner = new String[docdataarray.length()];
+                            String[] start = new String[docdataarray.length()];
+                            String[] end = new String[docdataarray.length()];
+
+                            for (int k = 0; k < docdataarray.length(); k++) {
+
+                                JSONObject docdatadetails = (JSONObject) docdataarray.get(k);
+                                title[k] = docdatadetails.getString("doc_title");
+                                // data[k] = docdatadetails.getString("document_data");
+                                start[k] = docdatadetails.getString("doc_start_date");
+                                end[k] = docdatadetails.getString("doc_end_date");
+                            }
+
+                            JSONArray docdataarray1 = jsonObj.getJSONArray("candidate_qualification_data");
+
+
+
+                            String[] qualification = new String[docdataarray1.length()];
+                            String[] qualistatus = new String[docdataarray1.length()];
+
+                            for (int k = 0; k < docdataarray1.length(); k++) {
+
+                                JSONObject docdatadetails = (JSONObject) docdataarray1.get(k);
+                                qualification[k] = docdatadetails.getString("qualification_name");
+                                // data[k] = docdatadetails.getString("document_data");
+                                qualistatus[k] = docdatadetails.getString("qualification_status");
+                                // end[k] = docdatadetails.getString("doc_end_date");
+                            }
+
+                            JSONArray docdataarray2 = jsonObj.getJSONArray("candidate_exp_data");
+
+
+
+                            String[] expcompany = new String[docdataarray2.length()];
+                            // String[] data = new String[docdataarray.length()];
+                            //String[] owner = new String[docdataarray.length()];
+                            String[] expdesign = new String[docdataarray2.length()];
+                            String[] expfrom = new String[docdataarray2.length()];
+                            String[] expto = new String[docdataarray2.length()];
+                            //String[] end = new String[docdataarray1.length()];
+
+                            for (int k = 0; k < docdataarray2.length(); k++) {
+
+                                JSONObject docdatadetails = (JSONObject) docdataarray2.get(k);
+                                expcompany[k] = docdatadetails.getString("experience_company");
+                                expdesign[k] = docdatadetails.getString("experience_designation");
+                                expfrom[k] = docdatadetails.getString("experience_from");
+                                expto[k] = docdatadetails.getString("experience_to");
+                            }
+
+
+                            ProfileItem mitem = new ProfileItem();
+                            mitem.setProfile_title(profiletitle);
+                            mitem.setProfile_subtitle(profilesubtitle);
+                            // mitem.setAdvanced_title(advtitle);
+                            //mitem.setAdvanced_subtitile(advsubtitle);
+                            mitem.setfile_title(docdata);
+                            mitem.setfile_path(docdatadate);
+                            mitem.setDatatitle(title);
+                            //  mitem.setDatadls(data);
+                            mitem.setfile_companyname(expcompany);
+                            mitem.setfile_designation(expdesign);
+                            mitem.setfile_from(expfrom);
+                            mitem.setfile_to(expto);
+                            mitem.setfile_qualification(qualification);
+                            mitem.setfile_qstatus(qualistatus);
+                            mitem.setDatastart(start);
+                            mitem.setDataend(end);
+
+                            dataItem.add(mitem);
+
+                            Intent intent = new Intent("CANDIDATEGET");
+                            sendBroadcast(intent);
+
+                        }
+
+                        else if ((Status.equals("employee")) || (Status.equals("flipemployee"))
+                                || (Status.equals("flipcompany")) || (Status.equals("flipbranch"))) {
                             JSONArray companyArray = jsonObj.getJSONArray("employee_list");
                             JSONArray companydocArray = jsonObj.getJSONArray("employeeDocuments");
 
-                           /* if((!jsonObj.getString("employee_profile_pic")
+                            if((!jsonObj.getString("employee_profile_pic")
                                     .replaceAll(" ", "%20").equals(""))
                                     && (!jsonObj.getString("employee_profile_pic")
                                     .replaceAll(" ", "%20").equals("null"))) {
@@ -467,14 +780,14 @@ public class OtherProfileActivity extends AppCompatActivity implements View.OnCl
                                         .placeholder(R.drawable.profile)
                                         .error(R.drawable.profile)
                                         .into(profile);
-                            } else*/ {
+                            } else {
                                 profile.setImageResource(R.drawable.profile);
                             }
 
                             String[] profiletitle = new String[11];
                             String[] profilesubtitle = new String[11];
-                            String[] advtitle = new String[7];
-                            String[] advsubtitle = new String[7];
+                            String[] advtitle = new String[11];
+                            String[] advsubtitle = new String[11];
 
                             for (int i = 0; i < companyArray.length(); i++) {
 
@@ -499,11 +812,15 @@ public class OtherProfileActivity extends AppCompatActivity implements View.OnCl
                                 advtitle[4] = "Visa type";
                                 advtitle[5] = "Medical Category";
                                 advtitle[6] = "Remarks";
+                                advtitle[7] = "Bank";
+                                advtitle[8] = "Bank Code";
+                                advtitle[9] = "Account No";
+                                advtitle[10] = "IBAN No";
 
-                                if (companyArrayObj.getString("company_name").equals("")){
+                                if (companyArrayObj.getString("company").equals("")){
                                     profilesubtitle[0] = "None";
                                 } else {
-                                    profilesubtitle[0] = companyArrayObj.getString("company_name");
+                                    profilesubtitle[0] = companyArrayObj.getString("company");
                                 }
                                 if (companyArrayObj.getString("employee_joining_date").equals("")){
                                     profilesubtitle[1] = "None";
@@ -530,10 +847,10 @@ public class OtherProfileActivity extends AppCompatActivity implements View.OnCl
                                 } else {
                                     profilesubtitle[5] = companyArrayObj.getString("employee_dob");
                                 }
-                                if (companyArrayObj.getString("employee_designation").equals("")){
+                                if (companyArrayObj.getString("designation").equals("")){
                                     profilesubtitle[6] = "None";
                                 } else {
-                                    profilesubtitle[6] = companyArrayObj.getString("employee_designation");
+                                    profilesubtitle[6] = companyArrayObj.getString("designation");
                                 }
                                 if (companyArrayObj.getString("employee_email").equals("")){
                                     profilesubtitle[7] = "None";
@@ -595,6 +912,26 @@ public class OtherProfileActivity extends AppCompatActivity implements View.OnCl
                                 } else {
                                     advsubtitle[6] = companyArrayObj.getString("employee_remarks");
                                 }
+                                if (companyArrayObj.getString("bank_name").equals("")){
+                                    advsubtitle[7] = "None";
+                                } else {
+                                    advsubtitle[7] = companyArrayObj.getString("bank_name");
+                                }
+                                if (companyArrayObj.getString("bank_code").equals("")){
+                                    advsubtitle[8] = "None";
+                                } else {
+                                    advsubtitle[8] = companyArrayObj.getString("bank_code");
+                                }
+                                if (companyArrayObj.getString("employee_account_no").equals("")){
+                                    advsubtitle[9] = "None";
+                                } else {
+                                    advsubtitle[9] = companyArrayObj.getString("employee_account_no");
+                                }
+                                if (companyArrayObj.getString("employee_iban_no").equals("")){
+                                    advsubtitle[10] = "None";
+                                } else {
+                                    advsubtitle[10] = companyArrayObj.getString("employee_iban_no");
+                                }
                             }
 
                             String[] docdata = new String[companydocArray.length()];
@@ -614,6 +951,26 @@ public class OtherProfileActivity extends AppCompatActivity implements View.OnCl
                                 }
                             }
 
+                            /*String[] title = new String[6];
+                            String[] data = new String[6];
+                            String[] start = new String[6];
+                            String[] end = new String[6];*/
+
+                            JSONArray docdataarray = jsonObj.getJSONArray("employee_doc_data");
+                            String[] title = new String[docdataarray.length()];
+                            String[] data = new String[docdataarray.length()];
+//String[] owner = new String[docdataarray.length()];
+                            String[] start = new String[docdataarray.length()];
+                            String[] end = new String[docdataarray.length()];
+                            for (int k = 0; k < docdataarray.length(); k++) {
+
+                                JSONObject docdatadetails = (JSONObject) docdataarray.get(k);
+                                title[k] =  docdatadetails.getString("document_title");
+                                data[k] =  docdatadetails.getString("document_data");
+                                start[k] =  docdatadetails.getString("document_start_date");
+                                end[k] =  docdatadetails.getString("document_end_date");
+                            }
+
                             ProfileItem mitem = new ProfileItem();
                             mitem.setProfile_title(profiletitle);
                             mitem.setProfile_subtitle(profilesubtitle);
@@ -621,11 +978,17 @@ public class OtherProfileActivity extends AppCompatActivity implements View.OnCl
                             mitem.setAdvanced_subtitile(advsubtitle);
                             mitem.setfile_title(docdata);
                             mitem.setfile_path(docdatadate);
+                            mitem.setDatatitle(title);
+                            mitem.setDatadls(data);
+                            mitem.setDatastart(start);
+                            mitem.setDataend(end);
                             dataItem.add(mitem);
 
                             Intent intent = new Intent("EMPLOYEEGET");
                             sendBroadcast(intent);
-                        } else if ((Status.equals("vehicle")) || (Status.equals("flipvehicle"))) {
+                        }
+
+                        else if ((Status.equals("vehicle")) || (Status.equals("flipvehicle"))) {
 
                             JSONArray companyArray = jsonObj.getJSONArray("vehicle_details");
                             JSONArray companydocArray = jsonObj.getJSONArray("vehicleDocuments");
@@ -1015,284 +1378,6 @@ public class OtherProfileActivity extends AppCompatActivity implements View.OnCl
 
 
 
-
-                        else if ((Status.equals("medicalclearedlist")) || (Status.equals("medical_failed_list"))
-                                || (Status.equals("updatemedicalstatus")) ) {
-
-
-                            JSONArray companyArray = jsonObj.getJSONArray("candidate_details");
-                            JSONArray companydocArray = jsonObj.getJSONArray("candidate_Documents");
-
-//                            String[] docdata = new String[2];
-//                            String[] docdatadate = new String[2];
-
-
-//
-//                                if ((!companyArrayObj.getString("candidate_profile_pic")
-//                                        .replaceAll(" ", "%20").equals(""))
-//                                        && (!companyArrayObj.getString("candidate_profile_pic")
-//                                        .replaceAll(" ", "%20").equals("null"))) {
-//
-//                                    Picasso.with(getApplicationContext())
-//                                            .load(companyArrayObj.getString("candidate_profile_pic")
-//                                                    .replaceAll(" ", "%20"))
-//                                            .placeholder(R.drawable.profile)
-//                                            .error(R.drawable.profile)
-//                                            .into(profile);
-//                                }
-//                                else
-                            {
-                                    profile.setImageResource(R.drawable.profile);
-                                }
-                                String[] profiletitle = new String[12];
-                                String[] profilesubtitle = new String[12];
-                                String[] advtitle = new String[5];
-                                String[] advsubtitle = new String[5];
-
-                            for (int i = 0; i < companyArray.length(); i++) {
-
-                                JSONObject companyArrayObj = (JSONObject) companyArray.get(i);
-
-                                profiletitle[0] = "Gender";
-                                profiletitle[1] = "Marital Status";
-                                profiletitle[2] = "Candidate Job";
-                                profiletitle[3] = "Doorno";
-                                profiletitle[4] = "Nationality";
-                                profiletitle[5] = "State";
-                                profiletitle[6] = "City";
-                                profiletitle[7] = "Zip Code";
-                                profiletitle[8] = "Email";
-                                profiletitle[9] = "Phone";
-                                profiletitle[10] = "Status";
-//                                          profiletitle[10] = "Interview Status";
-//                                          profiletitle[10] = "Job Position";
-//                                          profiletitle[10] = "Job category";
-//                                          profiletitle[10] = "Skills";
-//                                          profiletitle[10] = "Auto ID";
-//                                          profiletitle[10] = "Interview Name";
-//                                          profiletitle[10] = "Interviewer";
-//                                          profiletitle[10] = "Interview Date From";
-//                                          profiletitle[10] = "Interview Date To";
-//                                          profiletitle[10] = "Interview Time From";
-//                                          profiletitle[10] = "Interview Time To";
-//                                          profiletitle[10] = "Country";
-//                                          profiletitle[10] = "State";
-//                                          profiletitle[10] = "Place";
-                                profiletitle[11] = "Experience";
-
-                                advtitle[0] = "ID";
-                                advtitle[1] = "Title";
-                                advtitle[2] = "Documents data";
-                                advtitle[3] = "Start Date";
-                                advtitle[4] = "End Date";
-
-                                if (companyArrayObj.getString("candidate_gender").equals("")) {
-                                    profilesubtitle[0] = "None";
-                                } else {
-                                    profilesubtitle[0] = companyArrayObj.getString("candidate_gender");
-                                }
-                                if (companyArrayObj.getString("candidate_marital_status").equals("")) {
-                                    profilesubtitle[1] = "None";
-                                } else {
-                                    profilesubtitle[1] = companyArrayObj.getString("candidate_marital_status");
-                                }
-                                if (companyArrayObj.getString("candidate_job").equals("")) {
-                                    profilesubtitle[2] = "None";
-                                } else {
-                                    profilesubtitle[2] = companyArrayObj.getString("candidate_job");
-                                }
-                                if (companyArrayObj.getString("candidate_doorno").equals("")) {
-                                    profilesubtitle[3] = "None";
-                                } else {
-                                    profilesubtitle[3] = companyArrayObj.getString("candidate_doorno");
-                                }
-                                if (companyArrayObj.getString("candidate_nationality").equals("")) {
-                                    profilesubtitle[4] = "None";
-                                } else {
-                                    profilesubtitle[4] = companyArrayObj.getString("candidate_nationality");
-                                }
-                                if (companyArrayObj.getString("candidate_state").equals("")) {
-                                    profilesubtitle[5] = "None";
-                                } else {
-                                    profilesubtitle[5] = companyArrayObj.getString("candidate_state");
-                                }
-                                if (companyArrayObj.getString("candidate_city").equals("")) {
-                                    profilesubtitle[6] = "None";
-                                } else {
-                                    profilesubtitle[6] = companyArrayObj.getString("candidate_city");
-                                }
-                                if (companyArrayObj.getString("candidate_zipcode").equals("")) {
-                                    profilesubtitle[7] = "None";
-                                } else {
-                                    profilesubtitle[7] = companyArrayObj.getString("candidate_zipcode");
-                                }
-                                if (companyArrayObj.getString("candidate_email").equals("")) {
-                                    profilesubtitle[8] = "None";
-                                } else {
-                                    profilesubtitle[8] = companyArrayObj.getString("candidate_email");
-                                }
-                                if (companyArrayObj.getString("candidate_phone").equals("")) {
-                                    profilesubtitle[9] = "None";
-                                } else {
-                                    profilesubtitle[9] = companyArrayObj.getString("candidate_phone");
-                                }
-                                if (companyArrayObj.getString("candidate_status").equals("")) {
-                                    profilesubtitle[10] = "None";
-                                } else {
-                                    profilesubtitle[10] = companyArrayObj.getString("candidate_status");
-                                }
-                                if (companyArrayObj.getString("experience_to").equals("")) {
-                                    profilesubtitle[11] = "None";
-                                } else {
-                                    profilesubtitle[11] = companyArrayObj.getString("experience_to");
-                                }
-
-                                if (companyArrayObj.getString("documents_id").equals("")) {
-                                    advsubtitle[0] = "None";
-                                } else {
-                                    advsubtitle[0] = companyArrayObj.getString("documents_id");
-                                }
-                                if (companyArrayObj.getString("documents_title").equals("")) {
-                                    advsubtitle[1] = "None";
-                                } else {
-                                    advsubtitle[1] = companyArrayObj.getString("documents_title");
-                                }
-                                if (companyArrayObj.getString("documents_data").equals("")) {
-                                    advsubtitle[2] = "None";
-                                } else {
-                                    advsubtitle[2] = companyArrayObj.getString("documents_data");
-                                }
-                                if (companyArrayObj.getString("documents_start_date").equals("")) {
-                                    advsubtitle[3] = "None";
-                                } else {
-                                    advsubtitle[3] = companyArrayObj.getString("documents_start_date");
-                                }
-                                if (companyArrayObj.getString("documents_end_date").equals("")) {
-                                    advsubtitle[4] = "None";
-                                } else {
-                                    advsubtitle[4] = companyArrayObj.getString("documents_end_date");
-                                }
-
-
-                            }
-
-
-                            String[] docdata = new String[companydocArray.length()];
-                            String[] docdatadate = new String[companydocArray.length()];
-                            for (int j = 0; j < companydocArray.length(); j++) {
-
-                                JSONObject companydocArrayObj = (JSONObject) companydocArray.get(j);
-                                if (companydocArrayObj.getString("file_name").equals("")){
-                                    docdata[j] = "None";
-                                } else {
-                                    docdata[j] = companydocArrayObj.getString("file_name");
-                                }
-                                if (companydocArrayObj.getString("file_path").equals("")){
-                                    docdatadate[j] = "-";
-                                } else {
-                                    docdatadate[j] = companydocArrayObj.getString("file_path").replaceAll(" ","%20");
-                                }
-                            }
-
-
-
-                            ProfileItem mitem = new ProfileItem();
-                            mitem.setProfile_title(profiletitle);
-                            mitem.setProfile_subtitle(profilesubtitle);
-                            mitem.setAdvanced_title(advtitle);
-                            mitem.setAdvanced_subtitile(advsubtitle);
-                            mitem.setfile_name(docdata);
-                            mitem.setfile_path(docdatadate);
-                            dataItem.add(mitem);
-
-                            Intent intent = new Intent("CANDIDATEGET");
-                            sendBroadcast(intent);
-                        }
-                       else  if ((Status.equals("agent")) ) {
-
-                            JSONArray companyArray = jsonObj.getJSONArray("agent_profile");
-
-
-                            String[] profiletitle = new String[7];
-                            String[] profilesubtitle = new String[7];
-
-                            for (int i = 0; i < companyArray.length(); i++) {
-
-                                JSONObject companyArrayObj = (JSONObject) companyArray.get(i);
-
-//                                if((!companyArrayObj.getString("visa_profile_picture")
-//                                        .replaceAll(" ", "%20").equals(""))
-//                                        && (!companyArrayObj.getString("visa_profile_picture")
-//                                        .replaceAll(" ", "%20").equals("null"))) {
-//
-//                                    Picasso.with(getApplicationContext())
-//                                            .load(companyArrayObj.getString("visa_profile_picture")
-//                                                    .replaceAll(" ", "%20"))
-//                                            .placeholder(R.drawable.profile)
-//                                            .error(R.drawable.profile)
-//                                            .into(profile);
-//                                } else
-                                {
-                                    profile.setImageResource(R.drawable.profile);
-                                }
-                                profiletitle[0] = "Place";
-                                profiletitle[1] = "Country";
-                                profiletitle[2] = "State";
-                                profiletitle[3] = "Phone";
-                                profiletitle[4] = "Email";
-                                profiletitle[5] = "Address";
-                                profiletitle[6] = "Zipcode";
-
-
-                                if (companyArrayObj.getString("agent_place").equals("")){
-                                    profilesubtitle[0] = "None";
-                                } else {
-                                    profilesubtitle[0] = companyArrayObj.getString("agent_place");
-                                }
-                                if (companyArrayObj.getString("agent_country").equals("")){
-                                    profilesubtitle[1] = "None";
-                                } else {
-                                    profilesubtitle[1] = companyArrayObj.getString("agent_country");
-                                }
-                                if (companyArrayObj.getString("agent_state").equals("")){
-                                    profilesubtitle[2] = "None";
-                                } else {
-                                    profilesubtitle[2] = companyArrayObj.getString("agent_state");
-                                }
-                                if (companyArrayObj.getString("agent_phone").equals("")){
-                                    profilesubtitle[3] = "None";
-                                } else {
-                                    profilesubtitle[3] = companyArrayObj.getString("agent_phone");
-                                }
-                                if (companyArrayObj.getString("agent_email").equals("")){
-                                    profilesubtitle[4] = "None";
-                                } else {
-                                    profilesubtitle[4] = companyArrayObj.getString("agent_email");
-                                }
-                                if (companyArrayObj.getString("agent_address").equals("")){
-                                    profilesubtitle[5] = "None";
-                                } else {
-                                    profilesubtitle[5] = companyArrayObj.getString("agent_address");
-                                }
-                                if (companyArrayObj.getString("agent_zipcode").equals("")){
-                                    profilesubtitle[6] = "None";
-                                } else {
-                                    profilesubtitle[6] = companyArrayObj.getString("agent_zipcode");
-                                }
-                            }
-
-                            ProfileItem mitem = new ProfileItem();
-                            mitem.setProfile_title(profiletitle);
-                            mitem.setProfile_subtitle(profilesubtitle);
-                            dataItem.add(mitem);
-
-                            Intent intent = new Intent("AGENTGET");
-                            sendBroadcast(intent);
-                        }
-
-
-
-
                     }else {
                         Intent intent = new Intent("EMPTYGET");
                         sendBroadcast(intent);
@@ -1316,8 +1401,8 @@ public class OtherProfileActivity extends AppCompatActivity implements View.OnCl
     public class ProfileViewpagerAdapter extends FragmentPagerAdapter {
 
         private Context _context;
-        private int totalPage = 3;
-        private String[] titles = {"Profile", "Advanced", "Documents"};
+        private int totalPage = 4;
+        private String[] titles = {"Profile", "Advanced", "Document Details", "Documents"};
 
         public ProfileViewpagerAdapter(Context applicationContext,
                                        FragmentManager fragmentManager) {
@@ -1336,6 +1421,140 @@ public class OtherProfileActivity extends AppCompatActivity implements View.OnCl
                     f = new AdvancedChildFragment();
                     break;
                 case 2:
+                    f = new DocDetlChildFragment();
+                    break;
+                case 3:
+                    f = new DocumentChildFragment();
+                    break;
+            }
+            return f;
+        }
+
+        @Override
+        public CharSequence getPageTitle(int position) {
+            return titles[position];
+        }
+
+        @Override
+        public int getCount() {
+            return totalPage;
+        }
+    }
+    public class ProfileViewpagerOtherAdapter extends FragmentPagerAdapter {
+
+        private Context _context;
+        private int totalPage = 3;
+        private String[] titles = {"Profile", "Advanced", "Documents"};
+
+        public ProfileViewpagerOtherAdapter(Context applicationContext,
+                                            FragmentManager fragmentManager) {
+            super(fragmentManager);
+            _context = applicationContext;
+        }
+
+        @Override
+        public Fragment getItem(int position) {
+            Fragment f = new Fragment();
+            switch (position) {
+                case 0:
+                    f = new ProfileChildFragment();
+                    break;
+                case 1:
+                    f = new AdvancedChildFragment();
+                    break;
+                case 2:
+                    f = new DocumentChildFragment();
+                    break;
+            }
+            return f;
+        }
+
+        @Override
+        public CharSequence getPageTitle(int position) {
+            return titles[position];
+        }
+
+        @Override
+        public int getCount() {
+            return totalPage;
+        }
+    }
+    public class ProfileViewpagercompanyAdapter extends FragmentPagerAdapter {
+
+        private Context _context;
+        private int totalPage = 5;
+        private String[] titles = {"Profile", "Advanced","Bank Details","Document Details","Documents"};
+
+        public ProfileViewpagercompanyAdapter(Context applicationContext,
+                                              FragmentManager fragmentManager) {
+            super(fragmentManager);
+            _context = applicationContext;
+        }
+
+        @Override
+        public Fragment getItem(int position) {
+            Fragment f = new Fragment();
+            switch (position) {
+                case 0:
+                    f = new ProfileChildFragment();
+                    break;
+                case 1:
+                    f = new AdvancedChildFragment();
+                    break;
+
+                case 2:
+                    f = new BankDocDetailsChild();
+                    break;
+                case 3:
+                    f = new DocDetlChildFragment();
+                    break;
+                case 4:
+                    f = new DocumentChildFragment();
+                    break;
+
+            }
+            return f;
+        }
+
+        @Override
+        public CharSequence getPageTitle(int position) {
+            return titles[position];
+        }
+
+        @Override
+        public int getCount() {
+            return totalPage;
+        }
+    }
+    public class ProfileViewpagercandidateAdapter extends FragmentPagerAdapter {
+
+        private Context _context;
+        private int totalPage = 5;
+        private String[] titles = {"Profile", "Advanced", "Experience","Document Details","Documents"};
+
+        public ProfileViewpagercandidateAdapter(Context applicationContext,
+                                                FragmentManager fragmentManager) {
+            super(fragmentManager);
+            _context = applicationContext;
+        }
+
+        @Override
+        public Fragment getItem(int position) {
+            Fragment f = new Fragment();
+            switch (position) {
+                case 0:
+                    f = new ProfileChildFragment();
+                    break;
+                case 1:
+                    f = new EXPADVchildfragment();
+                    break;
+                case 2:
+                    f = new Experiencechildfragment();
+                    break;
+                case 3:
+                    f = new DocDetlChildFragment();
+                    break;
+                case 4:
                     f = new DocumentChildFragment();
                     break;
             }
@@ -1405,12 +1624,12 @@ public class OtherProfileActivity extends AppCompatActivity implements View.OnCl
                 intent.putExtra("PAGE","REPORT");
                 break;
 
-            case "medicalclearedlist":
-                intent.putExtra("PAGE","MEDICALCLEAREDLIST");
+            case "candidate":
+                intent.putExtra("PAGE","CANDIDATE");
                 break;
-            case "agent":
-                intent.putExtra("PAGE","AGENT");
-                break;
+//            case "agent":
+//                intent.putExtra("PAGE","AGENT");
+//                break;
         }
         startActivity(intent);
         overridePendingTransition(android.R.anim.fade_in,

@@ -92,7 +92,12 @@ public class CompanyListFragment extends Fragment implements View.OnClickListene
         Data_Item = helper.gethomedetails();
         mBadge = (Badge)rootView.findViewById(R.id.badge);
         mBadge.setText(Data_Item.get(0).get("home_cpy_notification"));
-
+        mBadge.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mListener.LoadItem(52);
+            }
+        });
 
 System.out.println("?????????????????????"+Data_Item.get(0).get("home_cpy_notification"));
         switcher = new Switcher.Builder(getActivity())

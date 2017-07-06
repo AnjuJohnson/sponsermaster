@@ -7,14 +7,31 @@ package com.cutesys.sponsormasterfullversionnew.Helperclasses;
 public class CandidateListItem {
     private String candidate_id;
     private String candidate_code;
-    private String fullname;
+    private String fullname,name;
     private String candidate_email;
     private String candidate_phone;
     private String candidate_job;
     private String application_job_position;
-    private String image;
+    private String image,id;
 
     public CandidateListItem(){}
+    public String get_id() {
+        return id;
+    }
+
+    public void set_id(String id) {
+        this.id = id;
+    }
+
+
+
+    public String get_name() {
+        return name;
+    }
+
+    public void set_name(String name) {
+        this.name = name;
+    }
 
     public String getcandidate_id() {
         return candidate_id;

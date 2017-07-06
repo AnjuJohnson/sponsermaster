@@ -4,6 +4,7 @@ package com.cutesys.sponsormasterfullversionnew.Adapterclasses;
  * Created by user on 3/30/2017.
  */
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.support.v7.widget.CardView;
@@ -19,6 +20,7 @@ import android.widget.TextView;
 
 
 import com.cutesys.sponsormasterfullversionnew.Helperclasses.CandidateListItem;
+import com.cutesys.sponsormasterfullversionnew.OtherProfileActivity;
 import com.cutesys.sponsormasterfullversionnew.R;
 import com.cutesys.sponsormasterfullversionnew.Recruitment.SelectionStatus.CandidateListFragment;
 
@@ -31,12 +33,12 @@ import java.util.ArrayList;
 
 public class CandidateListAdapter extends RecyclerView.Adapter<CandidateListAdapter.ViewHolder>  {
     ArrayList<CandidateListItem> mListItem;
-    Context mContext;
+    Activity mContext;
     String status;
     View v;
 
 
-    public CandidateListAdapter(Context context, ArrayList<CandidateListItem> listItem, String status) {
+    public CandidateListAdapter(Activity context, ArrayList<CandidateListItem> listItem, String status) {
         mListItem = listItem;
         mContext = context;
         this.status = status;
@@ -53,7 +55,7 @@ public class CandidateListAdapter extends RecyclerView.Adapter<CandidateListAdap
         TextView  job_position;
         TextView candicode;
 
-
+        CardView candidatecard;
 
 
 
@@ -65,7 +67,7 @@ public class CandidateListAdapter extends RecyclerView.Adapter<CandidateListAdap
             this.phone = (TextView) itemView.findViewById(R.id.candidatephone);
             this.job_position= (TextView) itemView.findViewById(R.id.job_position);
             this.candicode= (TextView) itemView.findViewById(R.id.candicode);
-
+            this.candidatecard= (CardView) itemView.findViewById(R.id.candidatecard);
 
 
 
@@ -96,6 +98,25 @@ public class CandidateListAdapter extends RecyclerView.Adapter<CandidateListAdap
         TextView  phone=holder.phone;
         TextView  job_position=holder.job_position;
         TextView candicode=holder.candicode;
+        holder.candidatecard.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent intent = new Intent(mContext,OtherProfileActivity.class);
+                intent.putExtra("NAME",mListItem.get(position).getfullname());
+                intent.putExtra("ID",mListItem.get(position).getcandidate_id());
+                if(status.equals("candidate")) {
+
+                    intent.putExtra("STATUS","candidate");
+
+                }
+
+                mContext.startActivity(intent);
+                mContext.overridePendingTransition(R.anim.bottom_up,
+                        android.R.anim.fade_out);
+                mContext.finish();
+            }
+        });
 
 
 

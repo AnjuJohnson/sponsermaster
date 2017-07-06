@@ -4,7 +4,6 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
@@ -16,7 +15,7 @@ import android.widget.TextView;
 
 
 import com.cutesys.sponsermasterlibrary.Switcher.Switcher;
-import com.cutesys.sponsormasterfullversionnew.Adapterclasses.OtherProfileDocumentAdapter;
+import com.cutesys.sponsormasterfullversionnew.Adapterclasses.BankDocDetailsAdapter;
 import com.cutesys.sponsormasterfullversionnew.Helperclasses.ListItem;
 import com.cutesys.sponsormasterfullversionnew.Helperclasses.ProfileItem;
 import com.cutesys.sponsormasterfullversionnew.OtherProfileActivity;
@@ -30,17 +29,17 @@ import java.util.ArrayList;
  * Created by Kris on 3/8/2017.
  */
 
-public class DocumentChildFragment  extends Fragment implements View.OnClickListener{
+public class BankDocDetailsChild extends Fragment implements View.OnClickListener{
 
     private Switcher switcher;
     private RecyclerView mrecyclerview;
     private TextView error_label_retry, empty_label_retry;
 
     private OtherProfileActivity mOtherProfileActivity;
-    private OtherProfileDocumentAdapter mOtherProfileDocumentAdapter;
+    private BankDocDetailsAdapter mDocDetailsAdapter;
     BroadcastReceiver receiver;
     ArrayList<ListItem> dataItem;
-
+    ProfileItem mProfileItem ;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -51,7 +50,7 @@ public class DocumentChildFragment  extends Fragment implements View.OnClickList
     }
 
     private void InitIdView(View rootView){
-        mOtherProfileActivity = (OtherProfileActivity)getActivity();
+        mOtherProfileActivity = (OtherProfileActivity) getActivity();
         switcher = new Switcher.Builder(getActivity())
                 .addContentView(rootView.findViewById(R.id.mrecyclerview))
                 .addErrorView(rootView.findViewById(R.id.error_view))
@@ -77,17 +76,13 @@ public class DocumentChildFragment  extends Fragment implements View.OnClickList
         super.onResume();
 
         IntentFilter filter = new IntentFilter("COMPANYGET");
-        filter.addAction("VEHICLEGET");
-        filter.addAction("CANDIDATEGET");
-        filter.addAction("VISAGET");
-        filter.addAction("EMPLOYEEGET");
-        filter.addAction("EMPTYGET");
-        filter.addAction("ERRORGET");
-        filter.addAction("ERRORNETGET");
+
         receiver = new BroadcastReceiver() {
             @Override
             public void onReceive(Context context, Intent intent) {
                 try {
+                    mProfileItem = OtherProfileActivity.dataItem.get(0);
+
                     if (intent.getAction().equals("EMPTYGET")) {
                         switcher.showEmptyView();
 
@@ -97,39 +92,73 @@ public class DocumentChildFragment  extends Fragment implements View.OnClickList
                     } else if (intent.getAction().equals("ERRORNETGET")) {
                         switcher.showErrorView("No Internet Connection");
 
+                    }
+
+                    else if (mProfileItem.get_BANKNAME().length == 0) {
+                        switcher.showEmptyView();
+
                     } else {
+                        switcher.showContentView();
 
-                        ProfileItem mProfileItem = OtherProfileActivity.dataItem.get(0);
+                        String status = "";
+                        dataItem = new ArrayList<>();
 
-                        if(mProfileItem.getfile_path().length == 0){
-                            switcher.showEmptyView();
 
-                        } else {
-                            switcher.showContentView();
-                            dataItem = new ArrayList<>();
-                            for (int i = 0; i < mProfileItem.getfile_path().length; i++) {
 
-                                if (!mProfileItem.getfile_path().equals("None")) {
-                                    ListItem item = new ListItem();
-                                    item.set_name(StringUtils.capitalize(mProfileItem.getfile_title()[i]
-                                            .toLowerCase().trim().replaceAll("[-+_.^:,]", " ")));
-                                    item.set_email(mProfileItem.getfile_path()[i].replaceAll(" ", "%20"));
-                                    dataItem.add(item);
-                                    System.out.println("11111:" + mProfileItem.getfile_path()[i].replaceAll(" ", "%20"));
-                                }
+
+                        if (intent.getAction().equals("COMPANYGET")) {
+
+                            status = "company";
+
+                            for (int i = 0; i < mProfileItem.get_BANKNAME().length; i++) {
+
+                                ListItem item = new ListItem();
+                                item.set_name(StringUtils.capitalize(mProfileItem.get_BANKNAME()[i]
+                                        .toLowerCase().trim()));
+                                item.set_address(mProfileItem.get_BANKCODE()[i]);
+                                item.set_designation(mProfileItem.get_BANKACCOUNT()[i]);
+                                item.set_in(mProfileItem.get_BANKIBNNO()[i]);
+
+
+
+                                dataItem.add(item);
                             }
 
-                            mOtherProfileDocumentAdapter = new OtherProfileDocumentAdapter(getActivity(),
-                                    dataItem);
-                            mrecyclerview.setAdapter(mOtherProfileDocumentAdapter);
                         }
+                        /*else if (intent.getAction().equals("COMPANYGET")) {
+
+                            status = "branch";
+
+                            for (int i = 0; i < mProfileItem.get_BANKNAME().length; i++) {
+
+                                ListItem item = new ListItem();
+                                item.set_name(StringUtils.capitalize(mProfileItem.get_BANKNAME()[i]
+                                        .toLowerCase().trim()));
+                                item.set_address(mProfileItem.get_BANKCODE()[i]);
+                                item.set_designation(mProfileItem.get_BANKACCOUNT()[i]);
+                                item.set_in(mProfileItem.get_BANKIBNNO()[i]);
+
+
+
+                                dataItem.add(item);
+                            }
+
+                        }
+*/
+
+
+                        mDocDetailsAdapter = new BankDocDetailsAdapter(getActivity(), dataItem, status);
+                        mrecyclerview.setAdapter(mDocDetailsAdapter);
+
                     }
+
                 } catch (Exception e) {
                 }
             }
         };
         getActivity().registerReceiver(receiver, filter);
     }
+
 
     @Override
     public void onClick(View view) {

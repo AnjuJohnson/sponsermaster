@@ -52,7 +52,7 @@ public class workreportadapter extends RecyclerView.Adapter<workreportadapter.Vi
         TextView designation;
         TextView emp_id;
 
-
+TextView workreport;
 
 
 
@@ -63,9 +63,7 @@ public class workreportadapter extends RecyclerView.Adapter<workreportadapter.Vi
             this.attendancedate = (TextView) itemView.findViewById(R.id.attendancedate2);
             this.designation = (TextView) itemView.findViewById(R.id.designation2);
          this.emp_id=(TextView)itemView.findViewById(R.id.emp_id2);
-
-
-
+            this.workreport=(TextView)itemView.findViewById(R.id.workreport);
 
 
 
@@ -94,12 +92,12 @@ public class workreportadapter extends RecyclerView.Adapter<workreportadapter.Vi
         TextView  attendancedate=holder.attendancedate;
         TextView designation=holder.designation;
        TextView emp_id=holder.emp_id;
-
+TextView workreport=holder.workreport;
         fullname.setText(mListItem.get(position).getfull_name());
         attendancedate.setText(mListItem.get(position).getattendance_date());
         designation.setText( mListItem.get(position).getemployee_designation());
     emp_id.setText(mListItem.get(position).getemployee_employment_id());
-
+workreport.setText(mListItem.get(position).getattendance_date());
 
         final workreportitem dataItem = mListItem.get(position);
         ViewHolder myViewHolder = (ViewHolder) holder;

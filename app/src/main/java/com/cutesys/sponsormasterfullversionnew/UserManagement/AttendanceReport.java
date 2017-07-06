@@ -1,4 +1,4 @@
-package com.cutesys.sponsormasterfullversionnew.Recruitment;
+package com.cutesys.sponsormasterfullversionnew.UserManagement;
 
 import android.app.DatePickerDialog;
 import android.content.Intent;
@@ -7,7 +7,6 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -24,13 +23,10 @@ import android.widget.Toast;
 import com.cutesys.sponsermasterlibrary.CustomToast;
 import com.cutesys.sponsermasterlibrary.Progress.AVLoadingIndicatorView;
 import com.cutesys.sponsermasterlibrary.Switcher.Switcher;
-import com.cutesys.sponsormasterfullversionnew.Adapterclasses.LeaveListAdapter2;
 import com.cutesys.sponsormasterfullversionnew.Adapterclasses.SpinnerAdapter2;
 import com.cutesys.sponsormasterfullversionnew.Adapterclasses.SpinnerAdapter_;
-import com.cutesys.sponsormasterfullversionnew.Employee.LeaveListFragment;
 import com.cutesys.sponsormasterfullversionnew.Helperclasses.AllListItem;
 import com.cutesys.sponsormasterfullversionnew.R;
-import com.cutesys.sponsormasterfullversionnew.UserManagement.Attendance_Report_Page_item_Activity;
 import com.cutesys.sponsormasterfullversionnew.Util.Config;
 import com.cutesys.sponsormasterfullversionnew.Util.HttpOperations;
 

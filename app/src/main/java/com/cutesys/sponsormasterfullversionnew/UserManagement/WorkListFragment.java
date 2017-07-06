@@ -249,6 +249,12 @@ public class WorkListFragment  extends Fragment implements View.OnClickListener 
                                     item.setreport_id(StringUtils.capitalize(feedObj.getString("report_id")
                                             .toLowerCase().trim()));
                                 }
+                                if (feedObj.getString("report").trim().equals("")) {
+                                    item.setattendance_date("None");
+                                } else {
+                                    item.setattendance_date(StringUtils.capitalize(feedObj.getString("report")
+                                            .toLowerCase().trim()));
+                                }
 
 
                                 dataItem.add(item);

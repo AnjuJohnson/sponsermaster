@@ -4,7 +4,7 @@
     android:layout_height="wrap_content">
 
     <android.support.v7.widget.CardView
-        android:id="@+id/cmpy_empy_card"
+        android:id="@+id/candidatecard"
         style="@style/list_CardView">
 
         <LinearLayout

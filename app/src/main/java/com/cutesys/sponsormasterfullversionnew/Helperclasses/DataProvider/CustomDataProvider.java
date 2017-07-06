@@ -253,7 +253,7 @@ public class CustomDataProvider {
 
         list.add(new Item("Vehicle List",R.mipmap.ic_empty, 45));
         //list.add(new Item("Add Vehicle",R.mipmap.ic_empty, 46));
-        list.add(new Item("Document Status",R.mipmap.ic_empty, 47));
+      //  list.add(new Item("Document Status",R.mipmap.ic_empty, 47));
         list.add(groupItem);
         return list;
     }
@@ -283,7 +283,7 @@ public class CustomDataProvider {
         list.add(new Item("Company",R.mipmap.ic_empty, 52));
         list.add(new Item("Employee",R.mipmap.ic_empty, 53));
         list.add(new Item("Vehicle",R.mipmap.ic_empty, 54));
-        list.add(new Item("Visa",R.mipmap.ic_empty, 55));
+       // list.add(new Item("Visa",R.mipmap.ic_empty, 55));
         list.add(groupdetails);
         return list;
     }

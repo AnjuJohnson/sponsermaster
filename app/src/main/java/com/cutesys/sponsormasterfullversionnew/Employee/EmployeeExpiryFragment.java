@@ -173,28 +173,34 @@ public class EmployeeExpiryFragment extends Fragment implements View.OnClickList
                                 item.set_name(StringUtils.capitalize(feedObj.getString("employee_name")
                                         .toLowerCase().trim()));
                                 JSONArray exArray = feedObj.getJSONArray("doc_exp_date");
+                               System.out.println("length="+exArray.length());
                                 try {
                                     //JSONArray docArray = exArray.getJSONArray(0);
                                     String[] docdata = new String[exArray.length()];
                                     String[] docdatadate = new String[exArray.length()];
-                                    for (int j = 0; j < exArray.length(); j++) {
-                                        JSONObject expiryObj = (JSONObject) exArray.get(j);
 
-                                        if(expiryObj.getString("document_title").equals("")){
-                                            docdata[j] = "None";
-                                        } else {
-                                            docdata[j] = expiryObj.getString("document_title");
-                                        }
+if(exArray.length()!=0){
+    for (int j = 0; j < exArray.length(); j++) {
+        JSONObject expiryObj = (JSONObject) exArray.get(j);
 
-                                        if(expiryObj.getString("document_end_date").equals("")){
-                                            docdatadate[j] = "None";
-                                        } else {
-                                            docdatadate[j] = expiryObj.getString("document_end_date");
-                                        }
-                                    }
-                                    item.setTitle(docdata);
-                                    item.setTitle_date(docdatadate);
-                                    dataItem.add(item);
+        if(expiryObj.getString("document_title").equals("")){
+            docdata[j] = "None";
+        } else {
+            docdata[j] = expiryObj.getString("document_title");
+        }
+
+        if(expiryObj.getString("document_end_date").equals("")){
+            docdatadate[j] = "None";
+        } else {
+            docdatadate[j] = expiryObj.getString("document_end_date");
+        }
+    }
+    item.setTitle(docdata);
+    item.setTitle_date(docdatadate);
+    dataItem.add(item);
+}
+
+
                                 }catch (Exception e){}
                             }
                         }

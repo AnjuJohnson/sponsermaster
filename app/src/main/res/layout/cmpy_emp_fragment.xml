@@ -34,7 +34,7 @@
                 android:textColor="@android:color/white"
                 android:textSize="@dimen/toolbartitle"/>
             <ImageView
-android:visibility="gone"
+
                 android:id="@+id/icon"
                 android:layout_width="wrap_content"
                 android:layout_gravity="center"
@@ -44,7 +44,7 @@ android:visibility="gone"
                 android:src="@mipmap/ic_action_badge"/>
 
             <com.cutesys.sponsermasterlibrary.Badge
-android:visibility="gone"
+
                 android:id="@+id/badge"
                 android:layout_width="28dp"
                 android:layout_height="28dp"

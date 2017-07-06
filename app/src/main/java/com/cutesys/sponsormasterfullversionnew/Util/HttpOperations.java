@@ -77,7 +77,7 @@ public class HttpOperations {
         API_EMPLOYEEDESLEMPIST("EmployeeApi/designationemployeelist", "POST"),
         API_ALLOWANCE_LIST("EmployeeApi/allowancecategorylist","POST"),
         API_LOAN_LIST("EmployeeApi/employeeloanlist","POST"),
-        API_ATTENDANCE_LIST("EmployeeApi/employeeattendancelisttoday","POST"),
+        API_ATTENDANCE_LIST("LeaveApi/employeeattendancelisttoday","POST"),
         API_EMP_HOLIDAY_LIST("EmployeeApi/holidaylist","POST"),
         API_ADD_HOLIDAY("EmployeeApi/addholiday","POST"),
         API_ADD_ALLOWANCE("EmployeeApi/addallowancecategory","POST"),
@@ -148,7 +148,7 @@ public class HttpOperations {
         API_VEHICLE_DETAILS("VehicleApi/vehicledetails", "POST"),
 
         API_COMPANI_ALL_NOTIFICATION("CompanyApi/companyallnotification", "POST"),
-        API_EMPLOYEE_ALL_NOTIFICATION("EmployeeApi/employeeallnotificationday", "POST"),
+        API_EMPLOYEE_ALL_NOTIFICATION("EmployeeApi/employeeallnotification", "POST"),
         API_VEHICLE_ALL_NOTIFICATION("VehicleApi/vehicleallnotification", "POST"),
         API_VISA_ALL_NOTIFICATION("VisaApi/visanotification", "POST"),
         API_INTERVIEW_DETAILS("RecruitmentApi/interviewdetails","POST"),
@@ -221,7 +221,7 @@ public class HttpOperations {
         API_REPORT_ANNUAL_TRAVELLEED_BOOKED("AccountsApi/accountsreportannualtravellist","POST"),
 
         API_COMPANY_CAMPLIST("companyApi/camplist","POST"),
-        API_LEAVE_LIST("EmployeeApi/employeeleavelist","POST"),
+        API_LEAVE_LIST("leaveApi/employeeleavelist","POST"),
         API_ADDCAMP("CompanyApi/addcamp","POST"),
         API_COMPANY_CAMPROOMLIST("companyApi/camproomlist","POST"),
         API_COMPANY_ADDCAMPROOM("companyApi/addcamproom","POST"),
@@ -290,6 +290,14 @@ public class HttpOperations {
         params.put("candidate_id", candidate_id);
         return sendRequest(params, APIS.API_CANDIDATE_DETAILS, "?admin_id="+id+"&Authorization="+
                 authorization+"&candidate_id="+candidate_id);
+    }
+    public StringBuilder doCandidate_Details(final String id, final String authorization,
+                                             final String cid) {
+        HashMap<String, String> params = new HashMap<String, String>();
+        params.put("admin_id", id);
+        params.put("Authorization", authorization);
+        return sendRequest(params, APIS.API_CANDIDATE_DETAILS, "?admin_id="+id+"&Authorization="+
+                authorization+"&candidate_id="+cid);
     }
 
     public StringBuilder doOtherCancelledList(final String id, final String authorization, final String start) {
@@ -789,7 +797,7 @@ public class HttpOperations {
         params.put("Authorization", authorization);
         params.put("today",date);
         return sendRequest(params, APIS.API_ATTENDANCE_LIST, "?admin_id="+id+"&Authorization="+
-                authorization+"&start="+start+"&limit=50"+"&today="+date);
+                authorization+"&start="+start+"&limit=50"+"&today="+date+"&company_id=");
     }
     ////attendance report
     public StringBuilder doAttendanceReport(final String id, final String authorization,
@@ -1363,7 +1371,7 @@ public class HttpOperations {
         params.put("admin_id", id);
         params.put("Authorization", authorization);
         return sendRequest(params, APIS.API_EMPLOYEE_ALL_NOTIFICATION, "?admin_id="+id+"&Authorization="+
-                authorization+"&day="+day);
+                authorization+"&notification_start_date="+day);
     }
 
     // vehicle all notification
